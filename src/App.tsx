@@ -13,8 +13,7 @@ function App() {
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
     })
 
     lenisRef.current = lenis
@@ -43,7 +42,7 @@ function App() {
     if (target && lenisRef.current) {
       lenisRef.current.scrollTo(target, {
         offset: 0,
-        duration: 1.2
+        duration: 2
       })
     }
   }
@@ -62,6 +61,13 @@ function App() {
               className="text-sm text-slate hover:text-blue-500 transition-colors cursor-pointer"
             >
               About
+            </a>
+            <a
+              href="#skills"
+              onClick={(e) => scrollToSection(e, '#skills')}
+              className="text-sm text-slate hover:text-blue-500 transition-colors cursor-pointer"
+            >
+              Tech stack
             </a>
             <a
               href="#projects"
