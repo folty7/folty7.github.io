@@ -157,7 +157,7 @@ function App() {
             {/* Main Intro */}
             <div className="space-y-12">
               <h2 className="text-6xl md:text-7xl font-light tracking-tight text-blue-600 dark:text-blue-400">
-                Crafting modern web<br />experiences with</h2>
+                Crafting modern web experiences</h2>
 
               <div className="flex items-start gap-8 max-w-3xl">
                 <div className="text-4xl font-light text-blue-600 dark:text-blue-400">→</div>
