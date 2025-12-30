@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Code, Briefcase, Globe, ArrowDown } from 'lucide-react'
+import { Globe, ArrowDown } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import Lenis from 'lenis'
 import Marquee from "react-fast-marquee";
@@ -48,7 +48,7 @@ function App() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-200 dark:bg-slate-800">
         {/* Header Navigation */}
         <div className="absolute top-0 left-0 right-0 z-20 px-8 py-6 flex justify-between items-center">
-          <span className="text-sm text-slate">© Code by Andrej Folta</span>
+          <span className="text-sm text-slate">© Code by Andrej J. Folta</span>
           <nav className="flex gap-8">
             <a
               href="#about"
@@ -92,7 +92,8 @@ function App() {
           className="absolute inset-0 w-full h-full"
         >
           <img
-            src="/5B17A9CA-77D4-40BC-BC37-8C28A59A1684_1_201_a.jpeg"
+            // src="/5B17A9CA-77D4-40BC-BC37-8C28A59A1684_1_201_a.jpeg"
+            src="/roma_landscape.jpeg"
             alt="Portrait"
             className="w-full h-full object-cover object-center"
           />
@@ -121,7 +122,7 @@ function App() {
             speed={100}
           >
             <h1 className="text-[12rem] md:text-[20rem] text-white px-8">
-              Andrej Jozef Folta
+              Andrej J. Folta
             </h1>
           </Marquee>
         </div>
@@ -205,86 +206,87 @@ function App() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
+      <section id="skills" className="py-32 px-8 bg-slate-50 dark:bg-slate-900">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="space-y-20"
           >
-            <div className="flex items-center gap-3 mb-8">
-              <Code className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-              <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100">Zručnosti</h2>
-            </div>
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-200">Frontend Frameworks</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {['Vue.js 3', 'React', 'Pinia', 'Vue Router'].map((skill, index) => (
+            <h2 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900 dark:text-slate-100">
+              Tech Stack
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16">
+              <div className="space-y-6">
+                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">Frontend Frameworks</h3>
+                <div className="space-y-3">
+                  {['Vue.js 3', 'React', 'Pinia', 'Vue Router'].map((skill) => (
                     <motion.div
                       key={skill}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="p-4 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                      transition={{ duration: 0.3 }}
+                      className="text-lg font-light text-slate-700 dark:text-slate-300"
                     >
-                      <p className="text-center font-semibold text-sm text-slate-900 dark:text-slate-100">{skill}</p>
+                      {skill}
                     </motion.div>
                   ))}
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-200">Languages</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {['TypeScript', 'JavaScript', 'HTML5', 'CSS3'].map((skill, index) => (
+              <div className="space-y-6">
+                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">Languages</h3>
+                <div className="space-y-3">
+                  {['TypeScript', 'JavaScript', 'HTML5', 'CSS3'].map((skill) => (
                     <motion.div
                       key={skill}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="p-4 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                      transition={{ duration: 0.3 }}
+                      className="text-lg font-light text-slate-700 dark:text-slate-300"
                     >
-                      <p className="text-center font-semibold text-sm text-slate-900 dark:text-slate-100">{skill}</p>
+                      {skill}
                     </motion.div>
                   ))}
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-200">Styling & Design</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {['TailwindCSS', 'SCSS', 'SASS', 'Bootstrap', 'PrimeVue', 'Figma'].map((skill, index) => (
+              <div className="space-y-6">
+                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">Styling & Design</h3>
+                <div className="space-y-3">
+                  {['TailwindCSS', 'SCSS', 'SASS', 'Bootstrap', 'PrimeVue', 'Figma'].map((skill) => (
                     <motion.div
                       key={skill}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="p-4 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                      transition={{ duration: 0.3 }}
+                      className="text-lg font-light text-slate-700 dark:text-slate-300"
                     >
-                      <p className="text-center font-semibold text-sm text-slate-900 dark:text-slate-100">{skill}</p>
+                      {skill}
                     </motion.div>
                   ))}
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-200">Tools & Additional</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {['Vite', 'Git', 'WordPress', 'REST API', 'GSAP', 'Framer Motion', 'Gulp'].map((skill, index) => (
+              <div className="space-y-6">
+                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">Tools & Additional</h3>
+                <div className="space-y-3">
+                  {['Vite', 'Git', 'WordPress', 'REST API', 'GSAP', 'Framer Motion', 'Gulp'].map((skill) => (
                     <motion.div
                       key={skill}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="p-4 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                      transition={{ duration: 0.3 }}
+                      className="text-lg font-light text-slate-700 dark:text-slate-300"
                     >
-                      <p className="text-center font-semibold text-sm text-slate-900 dark:text-slate-100">{skill}</p>
+                      {skill}
                     </motion.div>
                   ))}
                 </div>
@@ -295,100 +297,110 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 bg-white dark:bg-slate-800">
-        <div className="max-w-4xl mx-auto">
+      <section id="projects" className="py-32 px-8 bg-white dark:bg-slate-800">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="space-y-20"
           >
-            <div className="flex items-center gap-3 mb-8">
-              <Briefcase className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-              <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100">Projekty</h2>
-            </div>
-            <div className="space-y-6">
+            <h2 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900 dark:text-slate-100">
+              Featured Work
+            </h2>
+
+            <div className="space-y-24">
+              {/* Project 1 */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="p-6 bg-slate-50 dark:bg-slate-900 rounded-lg hover:shadow-lg transition-shadow"
+                className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-slate-200 dark:border-slate-700 pt-8"
               >
-                <h3 className="text-2xl font-semibold mb-2 text-slate-900 dark:text-slate-100">Single Page Applications</h3>
-                <p className="text-slate-600 dark:text-slate-300 mb-4">
-                  Implementácia modulárnych SPA pomocou Vue 3 Composition API a React. Type-safe architektúra s TypeScript,
-                  Pinia state management, routing systémy s protected routes a REST API integráciou s error handling.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 rounded-full text-sm">
-                    Vue 3
-                  </span>
-                  <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm">
-                    React
-                  </span>
-                  <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded-full text-sm">
-                    TypeScript
-                  </span>
-                  <span className="px-3 py-1 bg-pink-100 dark:bg-pink-900 text-pink-600 dark:text-pink-300 rounded-full text-sm">
-                    Pinia
-                  </span>
+                <div className="md:col-span-1">
+                  <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">01</h3>
+                  <h4 className="text-2xl md:text-3xl font-normal text-slate-900 dark:text-slate-100">
+                    Single Page Applications
+                  </h4>
+                </div>
+                <div className="md:col-span-2 space-y-4">
+                  <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Implementácia modulárnych SPA pomocou Vue 3 Composition API a React. Type-safe architektúra s TypeScript,
+                    Pinia state management, routing systémy s protected routes a REST API integráciou s error handling.
+                  </p>
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">Vue 3</span>
+                    <span className="text-slate-300 dark:text-slate-600">•</span>
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">React</span>
+                    <span className="text-slate-300 dark:text-slate-600">•</span>
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">TypeScript</span>
+                    <span className="text-slate-300 dark:text-slate-600">•</span>
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">Pinia</span>
+                  </div>
                 </div>
               </motion.div>
 
+              {/* Project 2 */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="p-6 bg-slate-50 dark:bg-slate-900 rounded-lg hover:shadow-lg transition-shadow"
+                className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-slate-200 dark:border-slate-700 pt-8"
               >
-                <h3 className="text-2xl font-semibold mb-2 text-slate-900 dark:text-slate-100">WordPress Development</h3>
-                <p className="text-slate-600 dark:text-slate-300 mb-4">
-                  Vývoj custom WordPress tém s pokročilým SCSS a vlastným build procesom (Gulp, Webpack).
-                  Integrácia moderných JavaScript knižníc, performance optimalizácia, SEO tuning a úspešné migrácie WordPress sites.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm">
-                    WordPress
-                  </span>
-                  <span className="px-3 py-1 bg-pink-100 dark:bg-pink-900 text-pink-600 dark:text-pink-300 rounded-full text-sm">
-                    SCSS
-                  </span>
-                  <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-300 rounded-full text-sm">
-                    Gulp
-                  </span>
-                  <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 rounded-full text-sm">
-                    SEO
-                  </span>
+                <div className="md:col-span-1">
+                  <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">02</h3>
+                  <h4 className="text-2xl md:text-3xl font-normal text-slate-900 dark:text-slate-100">
+                    WordPress Development
+                  </h4>
+                </div>
+                <div className="md:col-span-2 space-y-4">
+                  <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Vývoj custom WordPress tém s pokročilým SCSS a vlastným build procesom (Gulp, Webpack).
+                    Integrácia moderných JavaScript knižníc, performance optimalizácia, SEO tuning a úspešné migrácie WordPress sites.
+                  </p>
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">WordPress</span>
+                    <span className="text-slate-300 dark:text-slate-600">•</span>
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">SCSS</span>
+                    <span className="text-slate-300 dark:text-slate-600">•</span>
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">Gulp</span>
+                    <span className="text-slate-300 dark:text-slate-600">•</span>
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">SEO</span>
+                  </div>
                 </div>
               </motion.div>
 
+              {/* Project 3 */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="p-6 bg-slate-50 dark:bg-slate-900 rounded-lg hover:shadow-lg transition-shadow"
+                className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-slate-200 dark:border-slate-700 pt-8"
               >
-                <h3 className="text-2xl font-semibold mb-2 text-slate-900 dark:text-slate-100">UI/UX Design & Animations</h3>
-                <p className="text-slate-600 dark:text-slate-300 mb-4">
-                  Design a implementácia responzívnych UI komponentov (PrimeVue, TailwindCSS, Bootstrap).
-                  Dark/light theme switching, pokročilé animácie pomocou GSAP a vytvorenie konzistentných design systémov vo Figma.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-cyan-100 dark:bg-cyan-900 text-cyan-600 dark:text-cyan-300 rounded-full text-sm">
-                    TailwindCSS
-                  </span>
-                  <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded-full text-sm">
-                    Figma
-                  </span>
-                  <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 rounded-full text-sm">
-                    GSAP
-                  </span>
-                  <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm">
-                    PrimeVue
-                  </span>
+                <div className="md:col-span-1">
+                  <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">03</h3>
+                  <h4 className="text-2xl md:text-3xl font-normal text-slate-900 dark:text-slate-100">
+                    UI/UX Design & Animations
+                  </h4>
+                </div>
+                <div className="md:col-span-2 space-y-4">
+                  <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Design a implementácia responzívnych UI komponentov (PrimeVue, TailwindCSS, Bootstrap).
+                    Dark/light theme switching, pokročilé animácie pomocou GSAP a vytvorenie konzistentných design systémov vo Figma.
+                  </p>
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">TailwindCSS</span>
+                    <span className="text-slate-300 dark:text-slate-600">•</span>
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">Figma</span>
+                    <span className="text-slate-300 dark:text-slate-600">•</span>
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">GSAP</span>
+                    <span className="text-slate-300 dark:text-slate-600">•</span>
+                    <span className="text-sm font-light text-slate-500 dark:text-slate-400">PrimeVue</span>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -397,47 +409,66 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+      <section id="contact" className="py-32 px-8 bg-white dark:bg-slate-800">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="space-y-20"
           >
-            <h2 className="text-4xl font-bold mb-8 text-slate-900 dark:text-slate-100">Kontakt</h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
-              Máte projekt alebo nápad? Rád si s vami pohovorím!
-            </p>
-            <div className="flex gap-6 justify-center">
-              <motion.a
-                href="mailto:foltadev@gmail.com"
-                className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-lg hover:shadow-xl transition-shadow"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Mail className="w-6 h-6 text-slate-900 dark:text-slate-100" />
-              </motion.a>
-              <motion.a
-                href="https://github.com/folty7"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-lg hover:shadow-xl transition-shadow"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Github className="w-6 h-6 text-slate-900 dark:text-slate-100" />
-              </motion.a>
-              <motion.a
-                href="https://www.linkedin.com/in/andrej-jozef-fo%C4%BEta-981a3b341/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-lg hover:shadow-xl transition-shadow"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Linkedin className="w-6 h-6 text-slate-900 dark:text-slate-100" />
-              </motion.a>
+            <h2 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900 dark:text-slate-100">
+              Let's work together
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              <div className="space-y-8">
+                <p className="text-lg font-light text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Máte projekt alebo nápad? Rád si s vami pohovorím a pomôžem vám pretaviť vaše predstavy do reality.
+                </p>
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Email</h3>
+                    <a
+                      href="mailto:foltadev@gmail.com"
+                      className="text-lg font-light text-slate-900 dark:text-slate-100 hover:text-slate-600 dark:hover:text-slate-400 transition-colors"
+                    >
+                      foltadev@gmail.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-8">
+                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">Socials</h3>
+                <div className="space-y-4">
+                  <motion.a
+                    href="https://github.com/folty7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 text-lg font-light text-slate-900 dark:text-slate-100 hover:text-slate-600 dark:hover:text-slate-400 transition-colors group"
+                    whileHover={{ x: 5 }}
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    <span>GitHub</span>
+                  </motion.a>
+                  <motion.a
+                    href="https://www.linkedin.com/in/andrej-jozef-fo%C4%BEta-981a3b341/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 text-lg font-light text-slate-900 dark:text-slate-100 hover:text-slate-600 dark:hover:text-slate-400 transition-colors group"
+                    whileHover={{ x: 5 }}
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                  </motion.a>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
