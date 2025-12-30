@@ -139,12 +139,12 @@ function App() {
           >
             {/* Main Intro */}
             <div className="space-y-12">
-              <h2 className="text-6xl md:text-7xl font-light tracking-tight">
+              <h2 className="text-6xl md:text-7xl font-light tracking-tight text-slate-900 dark:text-slate-100">
                 Helping brands thrive<br />in the digital world
               </h2>
 
               <div className="flex items-start gap-8 max-w-3xl">
-                <div className="text-4xl font-light text-slate-400">→</div>
+                <div className="text-4xl font-light text-slate-400 dark:text-slate-500">→</div>
                 <div className="space-y-6">
                   <p className="text-lg font-normal text-slate-700 dark:text-slate-300 leading-relaxed">
                     Som študent Aplikovanej informatiky so 4-ročnou praxou vo frontend developmente.
@@ -156,13 +156,13 @@ function App() {
 
             {/* I can help you with */}
             <div className="space-y-20">
-              <h3 className="text-5xl md:text-6xl font-light tracking-tight">I can help you with</h3>
+              <h3 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900 dark:text-slate-100">I can help you with</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {/* Design */}
                 <div className="space-y-8 border-t border-slate-200 dark:border-slate-700 pt-8">
-                  <div className="text-slate-400 text-sm font-light">01</div>
-                  <h4 className="text-3xl md:text-4xl font-normal">Design</h4>
+                  <div className="text-slate-400 dark:text-slate-500 text-sm font-light">01</div>
+                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900 dark:text-slate-100">Design</h4>
                   <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
                     S praxou v navrhovaní webových stránok dodávam silné a user-friendly digitálne dizajny.
                     (Od 2024 len v kombinácii s developmentom)
@@ -171,8 +171,8 @@ function App() {
 
                 {/* Development */}
                 <div className="space-y-8 border-t border-slate-200 dark:border-slate-700 pt-8">
-                  <div className="text-slate-400 text-sm font-light">02</div>
-                  <h4 className="text-3xl md:text-4xl font-normal">Development</h4>
+                  <div className="text-slate-400 dark:text-slate-500 text-sm font-light">02</div>
+                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900 dark:text-slate-100">Development</h4>
                   <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
                     Vyvíjam škálovateľné webové stránky od základov, ktoré perfektne ladí s dizajnom.
                     Moje zameranie je na mikro animácie, prechody a interakcie.
@@ -181,8 +181,8 @@ function App() {
 
                 {/* The full package */}
                 <div className="space-y-8 border-t border-slate-200 dark:border-slate-700 pt-8">
-                  <div className="text-slate-400 text-sm font-light">03</div>
-                  <h4 className="text-3xl md:text-4xl font-normal flex items-center gap-3">
+                  <div className="text-slate-400 dark:text-slate-500 text-sm font-light">03</div>
+                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900 dark:text-slate-100 flex items-center gap-3">
                     <span className="text-2xl">✦</span> The full package
                   </h4>
                   <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -214,8 +214,8 @@ function App() {
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center gap-3 mb-8">
-              <Code className="w-8 h-8 text-blue-600" />
-              <h2 className="text-4xl font-bold">Zručnosti</h2>
+              <Code className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100">Zručnosti</h2>
             </div>
             <div className="space-y-8">
               <div>
@@ -230,7 +230,7 @@ function App() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="p-4 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
                     >
-                      <p className="text-center font-semibold text-sm">{skill}</p>
+                      <p className="text-center font-semibold text-sm text-slate-900 dark:text-slate-100">{skill}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -248,7 +248,7 @@ function App() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="p-4 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
                     >
-                      <p className="text-center font-semibold text-sm">{skill}</p>
+                      <p className="text-center font-semibold text-sm text-slate-900 dark:text-slate-100">{skill}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -266,7 +266,7 @@ function App() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="p-4 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
                     >
-                      <p className="text-center font-semibold text-sm">{skill}</p>
+                      <p className="text-center font-semibold text-sm text-slate-900 dark:text-slate-100">{skill}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -284,7 +284,7 @@ function App() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="p-4 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
                     >
-                      <p className="text-center font-semibold text-sm">{skill}</p>
+                      <p className="text-center font-semibold text-sm text-slate-900 dark:text-slate-100">{skill}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -304,8 +304,8 @@ function App() {
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center gap-3 mb-8">
-              <Briefcase className="w-8 h-8 text-blue-600" />
-              <h2 className="text-4xl font-bold">Projekty</h2>
+              <Briefcase className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100">Projekty</h2>
             </div>
             <div className="space-y-6">
               <motion.div
@@ -315,7 +315,7 @@ function App() {
                 transition={{ duration: 0.5 }}
                 className="p-6 bg-slate-50 dark:bg-slate-900 rounded-lg hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-2xl font-semibold mb-2">Single Page Applications</h3>
+                <h3 className="text-2xl font-semibold mb-2 text-slate-900 dark:text-slate-100">Single Page Applications</h3>
                 <p className="text-slate-600 dark:text-slate-300 mb-4">
                   Implementácia modulárnych SPA pomocou Vue 3 Composition API a React. Type-safe architektúra s TypeScript,
                   Pinia state management, routing systémy s protected routes a REST API integráciou s error handling.
@@ -343,7 +343,7 @@ function App() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="p-6 bg-slate-50 dark:bg-slate-900 rounded-lg hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-2xl font-semibold mb-2">WordPress Development</h3>
+                <h3 className="text-2xl font-semibold mb-2 text-slate-900 dark:text-slate-100">WordPress Development</h3>
                 <p className="text-slate-600 dark:text-slate-300 mb-4">
                   Vývoj custom WordPress tém s pokročilým SCSS a vlastným build procesom (Gulp, Webpack).
                   Integrácia moderných JavaScript knižníc, performance optimalizácia, SEO tuning a úspešné migrácie WordPress sites.
@@ -371,7 +371,7 @@ function App() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="p-6 bg-slate-50 dark:bg-slate-900 rounded-lg hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-2xl font-semibold mb-2">UI/UX Design & Animations</h3>
+                <h3 className="text-2xl font-semibold mb-2 text-slate-900 dark:text-slate-100">UI/UX Design & Animations</h3>
                 <p className="text-slate-600 dark:text-slate-300 mb-4">
                   Design a implementácia responzívnych UI komponentov (PrimeVue, TailwindCSS, Bootstrap).
                   Dark/light theme switching, pokročilé animácie pomocou GSAP a vytvorenie konzistentných design systémov vo Figma.
@@ -405,7 +405,7 @@ function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl font-bold mb-8">Kontakt</h2>
+            <h2 className="text-4xl font-bold mb-8 text-slate-900 dark:text-slate-100">Kontakt</h2>
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
               Máte projekt alebo nápad? Rád si s vami pohovorím!
             </p>
@@ -416,7 +416,7 @@ function App() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <Mail className="w-6 h-6" />
+                <Mail className="w-6 h-6 text-slate-900 dark:text-slate-100" />
               </motion.a>
               <motion.a
                 href="https://github.com/folty7"
@@ -426,7 +426,7 @@ function App() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <Github className="w-6 h-6" />
+                <Github className="w-6 h-6 text-slate-900 dark:text-slate-100" />
               </motion.a>
               <motion.a
                 href="https://www.linkedin.com/in/andrej-jozef-fo%C4%BEta-981a3b341/"
@@ -436,7 +436,7 @@ function App() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <Linkedin className="w-6 h-6" />
+                <Linkedin className="w-6 h-6 text-slate-900 dark:text-slate-100" />
               </motion.a>
             </div>
           </motion.div>
