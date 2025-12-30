@@ -4,7 +4,7 @@ Modern, minimalist portfolio website showcasing my frontend development skills a
 
 ## Live Demo
 
-[View Live Site](https://folty7.github.io/mojaStranka/)
+[View Live Site](https://folty7.github.io/)
 
 ## Tech Stack
 
