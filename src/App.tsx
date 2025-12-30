@@ -1,7 +1,47 @@
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Code, Briefcase, User, Globe, ArrowDown } from 'lucide-react'
+import { Github, Linkedin, Mail, Code, Briefcase, Globe, ArrowDown } from 'lucide-react'
+import { useEffect, useRef } from 'react'
+import Lenis from 'lenis'
+import Marquee from "react-fast-marquee";
+
 
 function App() {
+  const lenisRef = useRef<Lenis | null>(null)
+
+  useEffect(() => {
+    // Initialize Lenis smooth scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true
+    })
+
+    lenisRef.current = lenis
+
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    return () => {
+      lenis.destroy()
+      lenisRef.current = null
+    }
+  }, [])
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault()
+    const target = document.querySelector(targetId) as HTMLElement
+    if (target && lenisRef.current) {
+      lenisRef.current.scrollTo(target, {
+        offset: 0,
+        duration: 1.2
+      })
+    }
+  }
+
   return (
     <div className="min-h-screen bg-slate-100 dark:bg-slate-900">
       {/* Hero Section */}
@@ -10,9 +50,27 @@ function App() {
         <div className="absolute top-0 left-0 right-0 z-20 px-8 py-6 flex justify-between items-center">
           <span className="text-sm text-slate">© Code by Andrej Folta</span>
           <nav className="flex gap-8">
-            <a href="#projects" className="text-sm text-slate hover:text-slate-600 transition-colors">Work</a>
-            <a href="#about" className="text-sm text-slate hover:text-slate-600 transition-colors">About</a>
-            <a href="#contact" className="text-sm text-slate hover:text-slate-600 transition-colors">Contact</a>
+            <a
+              href="#about"
+              onClick={(e) => scrollToSection(e, '#about')}
+              className="text-sm text-slate hover:text-slate-600 transition-colors cursor-pointer"
+            >
+              About
+            </a>
+            <a
+              href="#projects"
+              onClick={(e) => scrollToSection(e, '#projects')}
+              className="text-sm text-slate hover:text-slate-600 transition-colors cursor-pointer"
+            >
+              Work
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => scrollToSection(e, '#contact')}
+              className="text-sm text-slate hover:text-slate-600 transition-colors cursor-pointer"
+            >
+              Contact
+            </a>
           </nav>
         </div>
 
@@ -28,7 +86,7 @@ function App() {
 
         {/* Portrait Image */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
           className="absolute inset-0 w-full h-full"
@@ -57,72 +115,90 @@ function App() {
 
         {/* Marquee Name */}
         <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden bg-transparent pointer-events-none">
-          <motion.div
-            animate={{ x: [0, -1000] }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 10,
-                ease: "linear",
-              },
-            }}
-            className="flex whitespace-nowrap"
+          <Marquee
+            autoFill={true}
+            pauseOnHover={true}
+            speed={100}
           >
-            {[...Array(3)].map((_, i) => (
-              <h1 key={i} className="text-[12rem] md:text-[20rem] text-white px-8">
-                Andrej Jozef Folta
-              </h1>
-            ))}
-          </motion.div>
+            <h1 className="text-[12rem] md:text-[20rem] text-white px-8">
+              Andrej Jozef Folta
+            </h1>
+          </Marquee>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4 bg-white dark:bg-slate-800">
-        <div className="max-w-4xl mx-auto">
+      <section id="about" className="py-32 px-8 bg-white dark:bg-slate-800">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="space-y-32"
           >
-            <div className="flex items-center gap-3 mb-8">
-              <User className="w-8 h-8 text-blue-600" />
-              <h2 className="text-4xl font-bold">O mne</h2>
+            {/* Main Intro */}
+            <div className="space-y-12">
+              <h2 className="text-6xl md:text-7xl font-light tracking-tight">
+                Helping brands thrive<br />in the digital world
+              </h2>
+
+              <div className="flex items-start gap-8 max-w-3xl">
+                <div className="text-4xl font-light text-slate-400">→</div>
+                <div className="space-y-6">
+                  <p className="text-lg font-normal text-slate-700 dark:text-slate-300 leading-relaxed">
+                    Som študent Aplikovanej informatiky so 4-ročnou praxou vo frontend developmente.
+                    Vyvíjam moderné webové aplikácie a riešenia pre rôznorodých klientov - od startupov po etablované firmy.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="space-y-6 text-left">
-              <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                Som študent Aplikovanej informatiky so 4-ročnou praxou vo frontend developmente.
-                Vyvíjam moderné webové aplikácie a riešenia pre rôznorodých klientov - od startupov po etablované firmy.
+
+            {/* I can help you with */}
+            <div className="space-y-20">
+              <h3 className="text-5xl md:text-6xl font-light tracking-tight">I can help you with</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+                {/* Design */}
+                <div className="space-y-8 border-t border-slate-200 dark:border-slate-700 pt-8">
+                  <div className="text-slate-400 text-sm font-light">01</div>
+                  <h4 className="text-3xl md:text-4xl font-normal">Design</h4>
+                  <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
+                    S praxou v navrhovaní webových stránok dodávam silné a user-friendly digitálne dizajny.
+                    (Od 2024 len v kombinácii s developmentom)
+                  </p>
+                </div>
+
+                {/* Development */}
+                <div className="space-y-8 border-t border-slate-200 dark:border-slate-700 pt-8">
+                  <div className="text-slate-400 text-sm font-light">02</div>
+                  <h4 className="text-3xl md:text-4xl font-normal">Development</h4>
+                  <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Vyvíjam škálovateľné webové stránky od základov, ktoré perfektne ladí s dizajnom.
+                    Moje zameranie je na mikro animácie, prechody a interakcie.
+                  </p>
+                </div>
+
+                {/* The full package */}
+                <div className="space-y-8 border-t border-slate-200 dark:border-slate-700 pt-8">
+                  <div className="text-slate-400 text-sm font-light">03</div>
+                  <h4 className="text-3xl md:text-4xl font-normal flex items-center gap-3">
+                    <span className="text-2xl">✦</span> The full package
+                  </h4>
+                  <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Komplexná webová stránka od konceptu po implementáciu - to ma odlišuje.
+                    Moje schopnosti v dizajne a developmente mi umožňujú vytvárať skvele projekty.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Aktuálne */}
+            <div className="max-w-3xl">
+              <p className="text-lg font-light text-slate-600 dark:text-slate-300 leading-relaxed">
+                <strong className="font-normal text-slate-900 dark:text-slate-100">Aktuálne:</strong> Hľadám príležitosti na internship alebo prácu na dohodu.
+                Som otvorený pre remote aj hybrid pozície.
               </p>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200">🎯 Čo ponúkam:</h3>
-                <ul className="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300">
-                  <li>4 roky reálnych skúseností s komerčnými projektami</li>
-                  <li>Implementácia modulárnych Single Page Applications (Vue 3, React)</li>
-                  <li>WordPress custom development a optimalizácia</li>
-                  <li>UI/UX dizajn a responzívny dizajn</li>
-                  <li>Performance optimization a debugging komplexných aplikácií</li>
-                </ul>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-200">📊 Dosiahnuté výsledky:</h3>
-                <ul className="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300">
-                  <li>Úspešne dodaných 10+ projektov rôznej komplexnosti</li>
-                  <li>Zlepšenie load time implementáciou lazy loading a code splitting</li>
-                  <li>Vytvorenie reusable component libraries znižujúcich development time</li>
-                </ul>
-              </div>
-
-              <div className="bg-blue-50 dark:bg-slate-700 p-4 rounded-lg">
-                <p className="text-slate-700 dark:text-slate-200">
-                  <strong>📌 Aktuálne:</strong> Hľadám príležitosti na internship alebo prácu na dohodu.
-                  Som otvorený pre remote, hybrid aj on-site pozície.
-                </p>
-              </div>
             </div>
           </motion.div>
         </div>
@@ -199,7 +275,7 @@ function App() {
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-200">Tools & Additional</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {['Vite', 'Git', 'WordPress', 'REST API', 'GSAP', 'Gulp'].map((skill, index) => (
+                  {['Vite', 'Git', 'WordPress', 'REST API', 'GSAP', 'Framer Motion', 'Gulp'].map((skill, index) => (
                     <motion.div
                       key={skill}
                       initial={{ opacity: 0, y: 20 }}
@@ -335,7 +411,7 @@ function App() {
             </p>
             <div className="flex gap-6 justify-center">
               <motion.a
-                href="mailto:your.email@example.com"
+                href="mailto:foltadev@gmail.com"
                 className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-lg hover:shadow-xl transition-shadow"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -343,7 +419,7 @@ function App() {
                 <Mail className="w-6 h-6" />
               </motion.a>
               <motion.a
-                href="https://github.com/yourusername"
+                href="https://github.com/folty7"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-lg hover:shadow-xl transition-shadow"
@@ -353,7 +429,7 @@ function App() {
                 <Github className="w-6 h-6" />
               </motion.a>
               <motion.a
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/andrej-jozef-fo%C4%BEta-981a3b341/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-lg hover:shadow-xl transition-shadow"
