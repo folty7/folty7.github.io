@@ -8,20 +8,18 @@ function App() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-200 dark:bg-slate-800">
         {/* Header Navigation */}
         <div className="absolute top-0 left-0 right-0 z-20 px-8 py-6 flex justify-between items-center">
-          <span className="text-sm text-slate-600 dark:text-slate-400">© Code by Andrej Folta</span>
+          <span className="text-sm text-slate">© Code by Andrej Folta</span>
           <nav className="flex gap-8">
-            <a href="#projects" className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Work</a>
-            <a href="#about" className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">About</a>
-            <a href="#contact" className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Contact</a>
+            <a href="#projects" className="text-sm text-slate hover:text-slate-600 transition-colors">Work</a>
+            <a href="#about" className="text-sm text-slate hover:text-slate-600 transition-colors">About</a>
+            <a href="#contact" className="text-sm text-slate hover:text-slate-600 transition-colors">Contact</a>
           </nav>
         </div>
 
         {/* Location Badge */}
-        <div className="absolute top-32 left-8 z-20 flex items-center gap-3 bg-slate-900 dark:bg-slate-700 text-white px-6 py-3 rounded-full">
-          <div className="flex flex-col text-xs">
-            <span>Located</span>
-            <span>in the</span>
-            <span>Slovakia</span>
+        <div className="absolute top-32 left-0 z-20 flex items-center gap-3 bg-slate-900 text-white px-6 py-3 rounded-r-full">
+          <div className="flex flex-col text-sm">
+            <span>Located in Prague & Bratislava</span>
           </div>
           <div className="w-12 h-12 rounded-full bg-slate-700 dark:bg-slate-600 flex items-center justify-center">
             <Globe className="w-6 h-6" />
@@ -29,32 +27,30 @@ function App() {
         </div>
 
         {/* Portrait Image */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            className="relative w-full max-w-2xl h-full"
-          >
-            <img
-              src="../public/E79A7E4E-4247-4858-96EC-73B2DD898DC7_1_105_c.jpeg"
-              alt="Portrait"
-              className="w-full h-full object-cover object-center"
-            />
-          </motion.div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="absolute inset-0 w-full h-full"
+        >
+          <img
+            src="/5B17A9CA-77D4-40BC-BC37-8C28A59A1684_1_201_a.jpeg"
+            alt="Portrait"
+            className="w-full h-full object-cover object-center"
+          />
+        </motion.div>
 
         {/* Role Badge */}
-        <div className="absolute top-1/3 right-12 z-20 text-right">
+        <div className="absolute top-1/4 right-12 z-20 text-right">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <ArrowDown className="w-6 h-6 text-slate-700 dark:text-slate-300 ml-auto mb-4" />
-            <div className="text-2xl md:text-3xl font-light text-slate-800 dark:text-slate-200">
+            <ArrowDown className="w-6 text-slate ml-auto mb-4" />
+            <div className="text-2xl md:text-3xl font-light text-slate">
               <div>Freelance</div>
-              <div>Designer & Developer</div>
+              <div>Front-end Developer</div>
             </div>
           </motion.div>
         </div>
@@ -67,15 +63,15 @@ function App() {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 20,
+                duration: 10,
                 ease: "linear",
               },
             }}
             className="flex whitespace-nowrap"
           >
             {[...Array(3)].map((_, i) => (
-              <h1 key={i} className="text-[12rem] md:text-[20rem] font-bold text-white dark:text-slate-900 opacity-60 px-8">
-                Andrej Folta
+              <h1 key={i} className="text-[12rem] md:text-[20rem] text-white px-8">
+                Andrej Jozef Folta
               </h1>
             ))}
           </motion.div>
