@@ -1,13 +1,36 @@
 import { motion } from 'framer-motion'
-import { Globe, ArrowDown } from 'lucide-react'
+import { Globe, ArrowDown, Moon, Sun } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import Lenis from 'lenis'
-import Marquee from "react-fast-marquee";
+import Marquee from "react-fast-marquee"
+import { useTranslation } from 'react-i18next'
 
 
 function App() {
+  const { t, i18n } = useTranslation()
   const lenisRef = useRef<Lenis | null>(null)
   const [scrollY, setScrollY] = useState(0)
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') === 'dark' ||
+        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    }
+    return false
+  })
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    }
+  }, [isDarkMode])
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode)
+  }
 
   useEffect(() => {
     // Initialize Lenis smooth scroll
@@ -51,48 +74,77 @@ function App() {
     <>
     <div className="min-h-screen bg-slate-100 dark:bg-slate-900">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-200 dark:bg-slate-800">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-200">
         {/* Header Navigation */}
         <div className="absolute top-0 left-0 right-0 z-20 px-8 py-6 flex justify-between items-center">
-          <span className="text-sm text-slate">© Code by Andrej J. Folta</span>
-          <nav className="flex gap-8">
+          <span className="text-sm text-slate-600">{t('header.copyright')}</span>
+          <nav className="flex gap-8 items-center">
             <a
               href="#about"
               onClick={(e) => scrollToSection(e, '#about')}
-              className="text-sm text-slate hover:text-blue-500 transition-colors cursor-pointer"
+              className="text-sm text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
             >
-              About
+              {t('header.about')}
             </a>
             <a
               href="#skills"
               onClick={(e) => scrollToSection(e, '#skills')}
-              className="text-sm text-slate hover:text-blue-500 transition-colors cursor-pointer"
+              className="text-sm text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
             >
-              Tech stack
+              {t('header.techStack')}
             </a>
             <a
               href="#projects"
               onClick={(e) => scrollToSection(e, '#projects')}
-              className="text-sm text-slate hover:text-blue-500 transition-colors cursor-pointer"
+              className="text-sm text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
             >
-              Work
+              {t('header.work')}
             </a>
             <a
               href="#contact"
               onClick={(e) => scrollToSection(e, '#contact')}
-              className="text-sm text-slate hover:text-blue-500 transition-colors cursor-pointer"
+              className="text-sm text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
             >
-              Contact
+              {t('header.contact')}
             </a>
+            <div className="flex gap-2 ml-4 border-l border-slate-300 pl-4">
+              <button
+                onClick={() => i18n.changeLanguage('en')}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  i18n.language === 'en'
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => i18n.changeLanguage('sk')}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  i18n.language === 'sk'
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
+                }`}
+              >
+                SK
+              </button>
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors"
+                aria-label="Toggle dark mode"
+              >
+                {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+            </div>
           </nav>
         </div>
 
         {/* Location Badge */}
         <div className="absolute top-32 left-0 z-20 flex items-center gap-3 bg-slate-900 text-white px-6 py-3 rounded-r-full">
           <div className="flex flex-col text-sm">
-            <span>Located in Prague & Bratislava</span>
+            <span>{t('hero.location')}</span>
           </div>
-          <div className="w-12 h-12 rounded-full bg-slate-700 dark:bg-slate-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center">
             <Globe className="w-6 h-6" />
           </div>
         </div>
@@ -124,9 +176,9 @@ function App() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <ArrowDown className="w-6 text-blue-500 ml-auto mb-4" />
-            <div className="text-2xl md:text-3xl font-light text-slate">
-              <div>Freelance</div>
-              <div className="text-blue-500">Front-end Developer</div>
+            <div className="text-2xl md:text-3xl font-light text-slate-600">
+              <div>{t('hero.role')}</div>
+              <div className="text-blue-500">{t('hero.title')}</div>
             </div>
           </motion.div>
         </div>
@@ -138,7 +190,7 @@ function App() {
             pauseOnHover={true}
             speed={100}
           >
-            <h1 className="text-[12rem] md:text-[20rem] text-white px-8">
+            <h1 className="text-[5rem] md:text-[20rem] text-white px-8">
               Andrej J. Folta -
             </h1>
           </Marquee>
@@ -158,18 +210,16 @@ function App() {
             {/* Main Intro */}
             <div className="space-y-12">
               <h2 className="text-6xl md:text-7xl font-light tracking-tight text-blue-600 dark:text-blue-400">
-                Crafting modern web experiences</h2>
+                {t('about.heading')}</h2>
 
               <div className="flex items-start gap-8 max-w-3xl">
                 <div className="text-4xl font-light text-blue-600 dark:text-blue-400">→</div>
                 <div className="space-y-6">
                   <p className="text-lg font-normal text-slate-700 dark:text-slate-300 leading-relaxed">
-                    Som študent Aplikovanej informatiky so 4-ročnou praxou vo frontend developmente.
-                    Špecializujem sa na tvorbu moderných, responzívnych webových aplikácií s dôrazom na Vue.js ekosystém a WordPress custom development.
+                    {t('about.intro')}
                   </p>
                   <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Vyvíjam webové riešenia pre rôznorodých klientov - od startupov po etablované firmy.
-                    Moja práca sa sústreďuje na type-safe architektúry, moderné animácie a výkon aplikácií.
+                    {t('about.description')}
                   </p>
                 </div>
               </div>
@@ -177,36 +227,33 @@ function App() {
 
             {/* What I Offer */}
             <div className="space-y-20">
-              <h3 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900 dark:text-slate-100">Čo ponúkam</h3>
+              <h3 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900 dark:text-slate-100">{t('about.whatIOffer')}</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {/* Vue.js Expertise */}
                 <div className="space-y-8 border-t border-slate-200 dark:border-slate-700 pt-8">
                   <div className="text-slate-400 dark:text-slate-500 text-sm font-light">01</div>
-                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900 dark:text-slate-100">Vue.js SPA Development</h4>
+                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900 dark:text-slate-100">{t('about.services.vue.title')}</h4>
                   <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Implementácia modulárnych Single Page Applications pomocou Vue 3 Composition API s TypeScript.
-                    Type-safe architektúra, Pinia state management, routing s protected routes a REST API integrácia.
+                    {t('about.services.vue.description')}
                   </p>
                 </div>
 
                 {/* WordPress Development */}
                 <div className="space-y-8 border-t border-slate-200 dark:border-slate-700 pt-8">
                   <div className="text-slate-400 dark:text-slate-500 text-sm font-light">02</div>
-                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900 dark:text-slate-100">WordPress Custom Development</h4>
+                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900 dark:text-slate-100">{t('about.services.wordpress.title')}</h4>
                   <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Vývoj custom WordPress tém s pokročilým SCSS a vlastným build procesom.
-                    Performance optimalizácia, SEO tuning a integrácia moderných JavaScript knižníc.
+                    {t('about.services.wordpress.description')}
                   </p>
                 </div>
 
                 {/* UI/UX & Modern Stack */}
                 <div className="space-y-8 border-t border-slate-200 dark:border-slate-700 pt-8">
                   <div className="text-slate-400 dark:text-slate-500 text-sm font-light">03</div>
-                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900 dark:text-slate-100">UI/UX & Modern Tooling</h4>
+                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900 dark:text-slate-100">{t('about.services.uiux.title')}</h4>
                   <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Design a implementácia responzívnych UI komponentov s TailwindCSS a SCSS.
-                    GSAP animácie, dark/light theme switching a setup moderných build nástrojov (Vite, Gulp).
+                    {t('about.services.uiux.description')}
                   </p>
                 </div>
               </div>
@@ -214,22 +261,20 @@ function App() {
 
             {/* Results */}
             <div className="space-y-12">
-              <h3 className="text-3xl md:text-4xl font-light tracking-tight text-slate-900 dark:text-slate-100">Dosiahnuté výsledky</h3>
+              <h3 className="text-3xl md:text-4xl font-light tracking-tight text-slate-900 dark:text-slate-100">{t('about.resultsHeading')}</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
                 <div className="space-y-3">
                   <div className="text-5xl font-light text-blue-600 dark:text-blue-400">10+</div>
-                  <p className="text-base font-light text-slate-600 dark:text-slate-400">úspešne dodaných projektov rôznej komplexnosti</p>
+                  <p className="text-base font-light text-slate-600 dark:text-slate-400">{t('about.results.projects')}</p>
                 </div>
                 <div className="space-y-3">
                   <div className="text-5xl font-light text-blue-600 dark:text-blue-400">4</div>
-                  <p className="text-base font-light text-slate-600 dark:text-slate-400">roky reálnych skúseností s komerčnými projektami</p>
+                  <p className="text-base font-light text-slate-600 dark:text-slate-400">{t('about.results.experience')}</p>
                 </div>
               </div>
               <div className="pt-4 max-w-3xl">
                 <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Zlepšenie load time implementáciou lazy loading a code splitting.
-                  Vytvorenie reusable component libraries znižujúcich development time.
-                  Moderný workflow s pomocou AI nástrojov, s dôrazom na porozumenie kódu.
+                  {t('about.resultsDescription')}
                 </p>
               </div>
             </div>
@@ -237,9 +282,7 @@ function App() {
             {/* Aktuálne */}
             <div className="max-w-3xl border-l-2 border-blue-600 dark:border-blue-400 pl-8">
               <p className="text-lg font-light text-slate-600 dark:text-slate-300 leading-relaxed">
-                <strong className="font-normal text-blue-600 dark:text-blue-400">Aktuálne:</strong> Hľadám príležitosti na internship alebo prácu na dohodu,
-                kde môžem priniesť hodnotu svojimi skúsenosťami a zároveň sa učiť od skúsenejších developerov.
-                Som otvorený pre remote, hybrid aj on-site pozície.
+                <strong className="font-normal text-blue-600 dark:text-blue-400">{t('about.currentlyHeading')}</strong> {t('about.currentlyDescription')}
               </p>
             </div>
           </motion.div>
@@ -257,12 +300,12 @@ function App() {
             className="space-y-20"
           >
             <h2 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900 dark:text-slate-100">
-              Tech Stack
+              {t('skills.heading')}
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16">
               <div className="space-y-6">
-                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">Frontend Frameworks</h3>
+                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('skills.categories.frontend')}</h3>
                 <div className="space-y-3">
                   {['Vue.js 3', 'React', 'Pinia', 'Vue Router'].map((skill) => (
                     <motion.div
@@ -280,7 +323,7 @@ function App() {
               </div>
 
               <div className="space-y-6">
-                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">Languages</h3>
+                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('skills.categories.languages')}</h3>
                 <div className="space-y-3">
                   {['TypeScript', 'JavaScript', 'SQL', 'HTML5', 'CSS3'].map((skill) => (
                     <motion.div
@@ -298,7 +341,7 @@ function App() {
               </div>
 
               <div className="space-y-6">
-                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">Styling & Design</h3>
+                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('skills.categories.styling')}</h3>
                 <div className="space-y-3">
                   {['TailwindCSS', 'SCSS', 'SASS', 'Bootstrap', 'PrimeVue', 'Figma'].map((skill) => (
                     <motion.div
@@ -316,7 +359,7 @@ function App() {
               </div>
 
               <div className="space-y-6">
-                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">Tools & Additional</h3>
+                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('skills.categories.tools')}</h3>
                 <div className="space-y-3">
                   {['Vite', 'Git', 'WordPress', 'REST API', 'GSAP', 'Framer Motion', 'Webpack'].map((skill) => (
                     <motion.div
@@ -348,7 +391,7 @@ function App() {
             className="space-y-20"
           >
             <h2 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900 dark:text-slate-100">
-              Featured Work
+              {t('projects.heading')}
             </h2>
 
             <div className="space-y-24">
@@ -363,13 +406,12 @@ function App() {
                 <div className="md:col-span-1">
                   <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">01</h3>
                   <h4 className="text-2xl md:text-3xl font-normal text-slate-900 dark:text-slate-100">
-                    Single Page Applications
+                    {t('projects.items.spa.title')}
                   </h4>
                 </div>
                 <div className="md:col-span-2 space-y-4">
                   <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Implementácia modulárnych SPA pomocou Vue 3 Composition API a React. Type-safe architektúra s TypeScript,
-                    Pinia state management, routing systémy s protected routes a REST API integráciou s error handling.
+                    {t('projects.items.spa.description')}
                   </p>
                   <div className="flex flex-wrap gap-3 pt-2">
                     <span className="text-sm font-light text-slate-500 dark:text-slate-400">Vue 3</span>
@@ -394,13 +436,12 @@ function App() {
                 <div className="md:col-span-1">
                   <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">02</h3>
                   <h4 className="text-2xl md:text-3xl font-normal text-slate-900 dark:text-slate-100">
-                    WordPress Development
+                    {t('projects.items.wordpress.title')}
                   </h4>
                 </div>
                 <div className="md:col-span-2 space-y-4">
                   <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Vývoj custom WordPress tém s pokročilým SCSS a vlastným build procesom (Gulp, Webpack).
-                    Integrácia moderných JavaScript knižníc, performance optimalizácia, SEO tuning a úspešné migrácie WordPress sites.
+                    {t('projects.items.wordpress.description')}
                   </p>
                   <div className="flex flex-wrap gap-3 pt-2">
                     <span className="text-sm font-light text-slate-500 dark:text-slate-400">WordPress</span>
@@ -425,13 +466,12 @@ function App() {
                 <div className="md:col-span-1">
                   <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">03</h3>
                   <h4 className="text-2xl md:text-3xl font-normal text-slate-900 dark:text-slate-100">
-                    UI/UX Design & Animations
+                    {t('projects.items.uiux.title')}
                   </h4>
                 </div>
                 <div className="md:col-span-2 space-y-4">
                   <p className="text-base font-light text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Design a implementácia responzívnych UI komponentov (PrimeVue, TailwindCSS, Bootstrap).
-                    Dark/light theme switching, pokročilé animácie pomocou GSAP a vytvorenie konzistentných design systémov vo Figma.
+                    {t('projects.items.uiux.description')}
                   </p>
                   <div className="flex flex-wrap gap-3 pt-2">
                     <span className="text-sm font-light text-slate-500 dark:text-slate-400">TailwindCSS</span>
@@ -460,17 +500,17 @@ function App() {
             className="space-y-20"
           >
             <h2 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900 dark:text-slate-100">
-              Let's work together
+              {t('contact.heading')}
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
               <div className="space-y-8">
                 <p className="text-lg font-light text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Máte projekt alebo nápad? Rád si s vami pohovorím a pomôžem vám pretaviť vaše predstavy do reality.
+                  {t('contact.description')}
                 </p>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Email</h3>
+                    <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">{t('contact.email')}</h3>
                     <a
                       href="mailto:foltadev@gmail.com"
                       className="text-lg font-light text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -482,7 +522,7 @@ function App() {
               </div>
 
               <div className="space-y-8">
-                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">Socials</h3>
+                <h3 className="text-sm font-light text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('contact.socials')}</h3>
                 <div className="space-y-4">
                   <motion.a
                     href="https://github.com/folty7"
@@ -517,7 +557,7 @@ function App() {
 
       {/* Footer */}
       <footer className="py-8 text-center text-slate-500 dark:text-slate-400">
-        <p>© 2025 Andrej Folta. Všetky práva vyhradené.</p>
+        <p>{t('footer.copyright')}</p>
       </footer>
     </div>
     </>
