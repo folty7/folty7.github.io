@@ -48,6 +48,7 @@ function App() {
   }
 
   return (
+    <>
     <div className="min-h-screen bg-slate-100 dark:bg-slate-900">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-200 dark:bg-slate-800">
@@ -138,7 +139,7 @@ function App() {
             speed={100}
           >
             <h1 className="text-[12rem] md:text-[20rem] text-white px-8">
-              Andrej J. Folta
+              Andrej J. Folta -
             </h1>
           </Marquee>
         </div>
@@ -519,6 +520,7 @@ function App() {
         <p>© 2025 Andrej Folta. Všetky práva vyhradené.</p>
       </footer>
     </div>
+    </>
   )
 }
 
