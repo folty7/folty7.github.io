@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Lenis from 'lenis'
 import Marquee from "react-fast-marquee"
 import { useTranslation } from 'react-i18next'
+import Dither from './components/Dither'
 
 
 function App() {
@@ -196,9 +197,10 @@ function App() {
           </Marquee>
         </div>
       </section>
+      
 
       {/* About Section */}
-      <section id="about" className="py-32 px-8 bg-white dark:bg-slate-800">
+      <section id="about" className="py-32 px-8 bg-white dark:bg-slate-800 relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -290,8 +292,22 @@ function App() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-32 px-8 bg-slate-50 dark:bg-slate-900">
-        <div className="max-w-7xl mx-auto">
+      <section id="skills" className="py-32 px-8 bg-slate-50 dark:bg-slate-900 relative">
+        
+        <div className='w-full h-full absolute opacity-50 left-0 top-0'>
+        <Dither
+          waveColor={[0.5, 0.5, 0.5]}
+          disableAnimation={false}
+          enableMouseInteraction={true}
+          mouseRadius={0.3}
+          colorNum={4}
+          waveAmplitude={0.3}
+          waveFrequency={3}
+          waveSpeed={0.05}
+        />
+          </div>
+      
+        <div className="max-w-7xl mx-auto relative z-50">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
