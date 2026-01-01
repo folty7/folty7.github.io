@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 
 function lerp(a: number, b: number, n: number): number {
@@ -58,7 +58,6 @@ class ImageItem {
 
 class ImageTrailVariant1 {
   private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -75,7 +74,6 @@ class ImageTrailVariant1 {
 
   constructor(container: HTMLDivElement) {
     this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
