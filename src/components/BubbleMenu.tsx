@@ -104,7 +104,7 @@ export default function BubbleMenu({
 
   const handleToggle = () => {
     const nextState = !isMenuOpen;
-    if (nextState) setShowOverlay(true);
+    setShowOverlay(true);
     setIsMenuOpen(nextState);
     onMenuClick?.(nextState);
   };
@@ -156,7 +156,6 @@ export default function BubbleMenu({
         ease: 'power3.in',
         onComplete: () => {
           gsap.set(overlay, { display: 'none' });
-          setShowOverlay(false);
         }
       });
     }
@@ -306,10 +305,11 @@ export default function BubbleMenu({
         >
           {/* Dark background overlay with animation */}
           <div
-            className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm transition-all duration-500 ease-out pointer-events-auto cursor-pointer"
+            className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm pointer-events-auto cursor-pointer"
             style={{
               opacity: isMenuOpen ? 1 : 0,
-              transform: isMenuOpen ? 'scale(1)' : 'scale(0.95)'
+              transform: isMenuOpen ? 'scale(1)' : 'scale(0.95)',
+              transition: isMenuOpen ? 'opacity 0.5s ease-out, transform 0.5s ease-out' : 'none'
             }}
             onClick={() => setIsMenuOpen(false)}
             aria-label="Close menu"
