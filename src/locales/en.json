@@ -1,0 +1,84 @@
+{
+  "header": {
+    "copyright": "Code by Andrej J. Folta",
+    "about": "About",
+    "techStack": "Tech stack",
+    "work": "Work",
+    "contact": "Contact"
+  },
+  "menu": {
+    "home": "home",
+    "about": "about",
+    "skills": "tech stack",
+    "projects": "projects",
+    "contact": "contact"
+  },
+  "hero": {
+    "location": "Located in Prague & Trnava",
+    "role": "Freelance",
+    "title": "Front-end Developer"
+  },
+  "about": {
+    "heading": "Crafting modern web experiences",
+    "intro": "I'm an Applied Informatics student with 4 years of frontend development experience. I specialize in building modern, responsive web applications.",
+    "description": "I develop web solutions for diverse clients - from startups to established companies. My work combines modern design with clean code and a focus on user experience.",
+    "whatIOffer": "What I offer",
+    "services": {
+      "vue": {
+        "title": "Vue.js SPA Development",
+        "description": "Implementation of modular Single Page Applications using Vue 3 Composition API with TypeScript. Type-safe architecture, Pinia state management, routing with protected routes, and REST API integration."
+      },
+      "wordpress": {
+        "title": "WordPress Custom Development",
+        "description": "Development of custom WordPress themes with advanced SCSS and custom build process. Performance optimization, SEO tuning, and integration of modern JavaScript libraries."
+      },
+      "uiux": {
+        "title": "UI/UX & Modern Tooling",
+        "description": "Design and implementation of responsive UI components with TailwindCSS and SCSS. GSAP animations, dark/light theme switching, and setup of modern build tools (Vite, Gulp)."
+      }
+    },
+    "resultsHeading": "Achievements",
+    "results": {
+      "projects": "successfully delivered projects of varying complexity",
+      "experience": "years of real-world experience with commercial projects"
+    },
+    "resultsDescription": "Improved load times by implementing lazy loading and code splitting. Created reusable component libraries reducing development time. Modern workflow with AI tools, with emphasis on code understanding.",
+    "currentlyHeading": "Currently:",
+    "currentlyDescription": "I'm looking for internship opportunities or freelance work where I can bring value with my experience while learning from more experienced developers. I'm open to remote, hybrid, and on-site positions."
+  },
+  "skills": {
+    "heading": "Tech Stack",
+    "categories": {
+      "frontend": "Frontend Frameworks",
+      "languages": "Languages",
+      "styling": "Styling & Design",
+      "tools": "Tools & Additional"
+    }
+  },
+  "projects": {
+    "heading": "Featured Work",
+    "items": {
+      "spa": {
+        "title": "Single Page Applications",
+        "description": "Implementation of modular SPAs using Vue 3 Composition API and React. Type-safe architecture with TypeScript, Pinia state management, routing systems with protected routes, and REST API integration with error handling."
+      },
+      "wordpress": {
+        "title": "WordPress Development",
+        "description": "Development of custom WordPress themes with advanced SCSS and custom build process (Gulp, Webpack). Integration of modern JavaScript libraries, performance optimization, SEO tuning, and successful WordPress site migrations."
+      },
+      "uiux": {
+        "title": "UI/UX Design & Animations",
+        "description": "Design and implementation of responsive UI components (PrimeVue, TailwindCSS, Bootstrap). Dark/light theme switching, advanced animations using GSAP, and creation of consistent design systems in Figma."
+      }
+    }
+  },
+  "contact": {
+    "heading": "Let's work together",
+    "description": "Do you have a project or idea? I'd love to talk with you and help turn your vision into reality.",
+    "email": "Email",
+    "socials": "Socials"
+  },
+  "footer": {
+    "copyright": "© 2025 Andrej Folta. All rights reserved."
+  }
+}

@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next'
 import BubbleMenu from './components/BubbleMenu'
 
 
-
 function App() {
   const { t, i18n } = useTranslation()
   const lenisRef = useRef<Lenis | null>(null)
@@ -74,6 +73,14 @@ function App() {
     onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, '#about')
   },
   {
+    label: t('menu.skills'),
+    href: '#skills',
+    ariaLabel: t('menu.skills'),
+    rotation: 8,
+    hoverStyles: { bgColor: '#ef4444', textColor: '#ffffff' },
+    onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, '#skills')
+  },
+  {
     label: t('menu.projects'),
     href: '#projects',
     ariaLabel: t('menu.projects'),
@@ -81,17 +88,6 @@ function App() {
     hoverStyles: { bgColor: '#f59e0b', textColor: '#ffffff' },
     onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, '#projects')
   },
-  // {
-  //   label: t('menu.blog'),
-  //   href: '#',
-  //   ariaLabel: t('menu.blog'),
-  //   rotation: 8,
-  //   hoverStyles: { bgColor: '#ef4444', textColor: '#ffffff' },
-  //   onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
-  //     e.preventDefault()
-  //     // Blog section doesn't exist yet
-  //   }
-  // },
   {
     label: t('menu.contact'),
     href: '#contact',
@@ -123,55 +119,53 @@ function App() {
           />
         </div> */}
 
-    <div className="fixed w-full h-full top-[1vh] right-10 z-10">
-        <BubbleMenu
-          items={items}
-          menuAriaLabel="Toggle navigation"
-          menuBg="#ffffff"
-          menuContentColor="#111111"
-          useFixedPosition={false}
-          animationEase="back.out(1.5)"
-          animationDuration={0.5}
-          staggerDelay={0.12}
-        />
-    </div>
+    <BubbleMenu
+      items={items}
+      menuAriaLabel="Toggle navigation"
+      menuBg="#ffffff"
+      menuContentColor="#111111"
+      useFixedPosition={true}
+      animationEase="back.out(1.5)"
+      animationDuration={0.5}
+      staggerDelay={0.12}
+    />
 
     <div className="min-h-screen bg-white relative">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-200 z-20">
+      <section className="relative md:min-h-screen h-[60vh] flex items-center justify-center overflow-hidden bg-slate-200 z-20">
         {/* Header Navigation */}
         <div className="absolute top-0 left-0 right-0 z-20 px-8 py-6 flex justify-between items-center">
-          <span className="text-sm text-slate-600">{t('header.copyright')}</span>
+          <span className="text-md text-slate-600">{t('header.copyright')}</span>
           <nav className="flex gap-8 items-center">
             <a
               href="#about"
               onClick={(e) => scrollToSection(e, '#about')}
-              className="text-sm text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
+              className="md:block hidden text-md text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
             >
-              {t('header.about')}
+              {t('menu.about')}
             </a>
             <a
               href="#skills"
               onClick={(e) => scrollToSection(e, '#skills')}
-              className="text-sm text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
+              className="md:block hidden text-md text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
             >
-              {t('header.techStack')}
+              {t('menu.skills')}
             </a>
             <a
               href="#projects"
               onClick={(e) => scrollToSection(e, '#projects')}
-              className="text-sm text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
+              className="md:block hidden text-md text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
             >
-              {t('header.work')}
+              {t('menu.projects')}
             </a>
             <a
               href="#contact"
               onClick={(e) => scrollToSection(e, '#contact')}
-              className="text-sm text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
+              className="md:block hidden text-md text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
             >
-              {t('header.contact')}
+              {t('menu.contact')}
             </a>
-            <div className="flex gap-2 ml-4 border-l border-slate-300 pl-4">
+            <div className="flex gap-2 pl-4">
               <button
                 onClick={() => i18n.changeLanguage('en')}
                 className={`px-3 py-1 text-xs rounded transition-colors ${
@@ -197,12 +191,12 @@ function App() {
         </div>
 
         {/* Location Badge */}
-        <div className="absolute top-32 left-0 z-20 flex items-center gap-3 bg-slate-900 text-white px-6 py-3 rounded-r-full">
-          <div className="flex flex-col text-sm">
+        <div className="absolute md:top-32 top-20 left-0 z-20 flex items-center gap-3 bg-slate-900 text-white md:px-6 px-3 md:py-3 py-2 rounded-r-full">
+          <div className="flex flex-col md:text-sm text-xs">
             <span>{t('hero.location')}</span>
           </div>
-          <div className="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center">
-            <Globe className="w-6 h-6" />
+          <div className="md:w-12 w-9 md:h-12 h-9 rounded-full bg-slate-700 flex items-center justify-center">
+            <Globe className="md:w-6 w-5 md:h-6 h-5" />
           </div>
         </div>
 
@@ -223,19 +217,21 @@ function App() {
             alt="Portrait"
             className="w-full h-full object-cover object-center"
           />
+          {/* Gradient overlay - visible only on mobile */}
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent md:hidden pointer-events-none" />
         </div>
 
         {/* Role Badge */}
-        <div className="absolute top-1/4 right-12 z-20 text-right">
+        <div className="absolute md:top-1/6 top-1/2 md:right-12 right-6 z-20 text-right">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <ArrowDown className="w-6 text-blue-500 ml-auto mb-4" />
-            <div className="text-2xl md:text-3xl font-light text-slate-600">
+            <div className="text-5xl md:text-4xl font-light md:text-slate-600 text-white md:drop-shadow-none drop-shadow-[0_2px_10px_rgba(0,0,0,1)]">
               <div>{t('hero.role')}</div>
-              <div className="text-blue-500">{t('hero.title')}</div>
+              <div className="md:text-blue-500 text-white">{t('hero.title')}</div>
             </div>
           </motion.div>
         </div>
@@ -247,7 +243,7 @@ function App() {
             pauseOnHover={true}
             speed={100}
           >
-            <h1 className="text-[5rem] md:text-[20rem] text-white px-8">
+            <h1 className="text-[5rem] md:text-[10rem] xl:text-[15rem] text-white px-8">
               Andrej J. Folta -
             </h1>
           </Marquee>
@@ -473,7 +469,7 @@ function App() {
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Projects Section - Featured work */}
       <section id="projects" className="py-32 px-8 bg-white relative">
         <div className="max-w-7xl mx-auto">
           <motion.div

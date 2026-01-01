@@ -1,0 +1,84 @@
+{
+  "header": {
+    "copyright": "Code by Andrej J. Folta",
+    "about": "O mne",
+    "techStack": "Tech stack",
+    "work": "Práca",
+    "contact": "Kontakt"
+  },
+  "menu": {
+    "home": "domov",
+    "about": "o mne",
+    "skills": "tech stack",
+    "projects": "projekty",
+    "contact": "kontakt"
+  },
+  "hero": {
+    "location": "Pôsobím v Prahe a Trnave",
+    "role": "Freelance",
+    "title": "Front-end Developer"
+  },
+  "about": {
+    "heading": "Tvorím moderné webové riešenia",
+    "intro": "Som študent Aplikovanej informatiky so 4-ročnou praxou vo frontend developmente. Špecializujem sa na tvorbu moderných, responzívnych webových aplikácií.",
+    "description": "Vyvíjam webové riešenia pre rôznorodých klientov - od startupov po etablované firmy. Moja práca kombinuje moderný dizajn s čistým kódom a dôrazom na užívateľskú skúsenosť.",
+    "whatIOffer": "Čo ponúkam",
+    "services": {
+      "vue": {
+        "title": "Vue.js SPA Development",
+        "description": "Implementácia modulárnych Single Page Applications pomocou Vue 3 Composition API s TypeScript. Type-safe architektúra, Pinia state management, routing s protected routes a REST API integrácia."
+      },
+      "wordpress": {
+        "title": "WordPress Custom Development",
+        "description": "Vývoj custom WordPress tém s pokročilým SCSS a vlastným build procesom. Performance optimalizácia, SEO tuning a integrácia moderných JavaScript knižníc."
+      },
+      "uiux": {
+        "title": "UI/UX & Modern Tooling",
+        "description": "Design a implementácia responzívnych UI komponentov s TailwindCSS a SCSS. GSAP animácie, dark/light theme switching a setup moderných build nástrojov (Vite, Gulp)."
+      }
+    },
+    "resultsHeading": "Dosiahnuté výsledky",
+    "results": {
+      "projects": "úspešne dodaných projektov rôznej komplexnosti",
+      "experience": "roky reálnych skúseností s komerčnými projektami"
+    },
+    "resultsDescription": "Zlepšenie load time implementáciou lazy loading a code splitting. Vytvorenie reusable component libraries znižujúcich development time. Moderný workflow s pomocou AI nástrojov, s dôrazom na porozumenie kódu.",
+    "currentlyHeading": "Aktuálne:",
+    "currentlyDescription": "Hľadám príležitosti na internship alebo prácu na dohodu, kde môžem priniesť hodnotu svojimi skúsenosťami a zároveň sa učiť od skúsenejších developerov. Som otvorený pre remote, hybrid aj on-site pozície."
+  },
+  "skills": {
+    "heading": "Tech Stack",
+    "categories": {
+      "frontend": "Frontend Frameworks",
+      "languages": "Languages",
+      "styling": "Styling & Design",
+      "tools": "Tools & Additional"
+    }
+  },
+  "projects": {
+    "heading": "Featured Work",
+    "items": {
+      "spa": {
+        "title": "Single Page Applications",
+        "description": "Implementácia modulárnych SPA pomocou Vue 3 Composition API a React. Type-safe architektúra s TypeScript, Pinia state management, routing systémy s protected routes a REST API integráciou s error handling."
+      },
+      "wordpress": {
+        "title": "WordPress Development",
+        "description": "Vývoj custom WordPress tém s pokročilým SCSS a vlastným build procesom (Gulp, Webpack). Integrácia moderných JavaScript knižníc, performance optimalizácia, SEO tuning a úspešné migrácie WordPress sites."
+      },
+      "uiux": {
+        "title": "UI/UX Design & Animations",
+        "description": "Design a implementácia responzívnych UI komponentov (PrimeVue, TailwindCSS, Bootstrap). Dark/light theme switching, pokročilé animácie pomocou GSAP a vytvorenie konzistentných design systémov vo Figma."
+      }
+    }
+  },
+  "contact": {
+    "heading": "Vytvorme spolu niečo nové",
+    "description": "Máte projekt alebo nápad? Rád si s vami pohovorím a pomôžem vám pretaviť vaše predstavy do reality.",
+    "email": "Email",
+    "socials": "Socials"
+  },
+  "footer": {
+    "copyright": "© 2025 Andrej Folta. Všetky práva vyhradené."
+  }
+}
