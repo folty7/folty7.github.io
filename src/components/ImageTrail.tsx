@@ -201,7 +201,7 @@ interface ImageTrailProps {
   variant?: number;
 }
 
-export default function ImageTrail({ items = [], variant = 1 }: ImageTrailProps): JSX.Element {
+export default function ImageTrail({ items = [], variant = 1 }: ImageTrailProps): React.ReactElement {
   const containerRef = useRef<HTMLDivElement>(null);
   const instanceRef = useRef<any>(null);
 
