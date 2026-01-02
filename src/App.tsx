@@ -134,7 +134,7 @@ function App() {
       {/* Hero Section */}
       <section className="relative md:min-h-screen h-[60vh] flex items-center justify-center overflow-hidden bg-slate-200 z-20">
         {/* Header Navigation */}
-        <div className="absolute top-0 left-0 right-0 z-20 px-8 py-6 flex justify-between items-center">
+        <div className="absolute top-0 left-0 right-0 z-20 px-4 md:px-8 py-6 flex justify-between items-center">
           <span className="text-md text-slate-600">{t('header.copyright')}</span>
           <nav className="flex gap-8 items-center">
             <a
@@ -165,7 +165,7 @@ function App() {
             >
               {t('menu.contact')}
             </a>
-            <div className="flex gap-2 pl-4">
+            <div className="flex gap-2 md:pl-4">
               <button
                 onClick={() => i18n.changeLanguage('en')}
                 className={`px-3 py-1 text-xs rounded transition-colors ${
@@ -229,7 +229,7 @@ function App() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <ArrowDown className="w-6 text-blue-500 ml-auto mb-4" />
-            <div className="text-5xl md:text-4xl font-light md:text-slate-600 text-white md:drop-shadow-none drop-shadow-[0_2px_10px_rgba(0,0,0,1)]">
+            <div className="text-3xl md:text-4xl font-light md:text-slate-600 text-white md:drop-shadow-none drop-shadow-[0_2px_10px_rgba(0,0,0,1)]">
               <div>{t('hero.role')}</div>
               <div className="md:text-blue-500 text-white">{t('hero.title')}</div>
             </div>
@@ -251,7 +251,7 @@ function App() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-32 px-8 bg-white relative">
+      <section id="about" className="py-16 md:py-32 px-8 bg-white relative">
         <div className="max-w-7xl mx-auto space-y-32">
           {/* Main Intro */}
           <motion.div
@@ -261,11 +261,11 @@ function App() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="space-y-12"
           >
-            <h2 className="text-6xl md:text-7xl font-light tracking-tight text-blue-600">
+            <h2 className="text-5xl md:text-7xl font-light tracking-tight text-blue-600">
               {t('about.heading')}</h2>
 
             <div className="flex items-start gap-8 max-w-3xl">
-              <div className="text-4xl font-light text-blue-600">→</div>
+              <div className="hidden md:block text-4xl font-light text-blue-600">→</div>
               <div className="space-y-6">
                 <p className="text-lg font-normal text-slate-700 leading-relaxed">
                   {t('about.intro')}
@@ -278,7 +278,7 @@ function App() {
           </motion.div>
 
           {/* What I Offer */}
-          <div className="space-y-20">
+          <div className="space-y-10 md:space-y-10 md:space-y-20">
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -379,14 +379,14 @@ function App() {
       </section>
 
       {/* Tech Stack Section */}
-      <section id="skills" className="py-32 px-8 bg-slate-900 relative">
+      <section id="skills" className="py-16 md:py-32 px-8 bg-slate-900 relative">
         <div className="max-w-7xl mx-auto relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-20"
+            className="space-y-10 md:space-y-20"
           >
             <h2 className="text-5xl md:text-6xl font-light tracking-tight text-white">
               {t('skills.heading')}
@@ -470,14 +470,14 @@ function App() {
       </section>
 
       {/* Projects Section - Featured work */}
-      <section id="projects" className="py-32 px-8 bg-white relative">
+      <section id="projects" className="py-16 md:py-32 px-8 bg-white relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-20"
+            className="space-y-10 md:space-y-20"
           >
             <h2 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900">
               {t('projects.heading')}
@@ -579,14 +579,14 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-8 bg-slate-900 relative">
+      <section id="contact" className="py-16 md:py-32 px-8 bg-slate-900 relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-20"
+            className="space-y-10 md:space-y-20"
           >
             <h2 className="text-5xl md:text-6xl font-light tracking-tight text-white">
               {t('contact.heading')}
