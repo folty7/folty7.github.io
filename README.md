@@ -50,29 +50,8 @@ Modern, minimalist portfolio website showcasing my frontend development skills a
 - 🎪 Animated marquee name display
 - 🌊 Advanced animations with Framer Motion and GSAP
 - 🎯 Smooth anchor navigation
-- 🌗 Dark mode support (system preference)
 - 🌍 Multi-language support (i18next integration)
-- 🎨 3D graphics and WebGL effects with Three.js
 - 💎 Post-processing visual effects
-
-## Project Structure
-
-```
-mojaStranka/
-├── public/
-│   └── roma_landscape.jpeg    # Hero portrait image
-├── src/
-│   ├── lib/
-│   │   └── utils.ts           # Utility functions (cn helper)
-│   ├── App.tsx                # Main application component
-│   ├── index.css              # Tailwind imports
-│   └── main.tsx               # React entry point
-├── index.html                 # HTML template
-├── tailwind.config.js         # Tailwind configuration
-├── postcss.config.js          # PostCSS configuration
-├── tsconfig.json              # TypeScript configuration
-└── vite.config.ts             # Vite configuration
-```
 
 
 ## Deployment
