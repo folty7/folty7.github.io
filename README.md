@@ -9,15 +9,36 @@ Modern, minimalist portfolio website showcasing my frontend development skills a
 ## Tech Stack
 
 ### Core
-- **React 19** - UI framework
-- **TypeScript** - Type-safe development
-- **Vite** - Build tool and dev server
+- **React 19.2** - Modern UI framework with latest features
+- **TypeScript 5.9** - Type-safe development
+- **Vite 7.2** - Next-generation build tool and dev server
 - **Tailwind CSS v4** - Utility-first styling with new PostCSS plugin
 
 ### Animation & Effects
-- **Framer Motion** - React animation library
-- **Lenis** - Smooth scroll implementation
+- **Framer Motion 12** - Powerful React animation library
+- **GSAP 3** - Professional-grade JavaScript animation
+- **Lenis 1.3** - Smooth scroll implementation
 - **react-fast-marquee** - Marquee text effects
+
+### 3D Graphics
+- **Three.js** - WebGL 3D library
+- **@react-three/fiber** - React renderer for Three.js
+- **@react-three/postprocessing** - Post-processing effects
+- **OGL** - Minimal WebGL library
+
+### Internationalization
+- **i18next** - Internationalization framework
+- **react-i18next** - React bindings for i18next
+
+### UI Utilities
+- **Lucide React** - Beautiful, consistent icons
+- **class-variance-authority** - CVA for component variants
+- **clsx** & **tailwind-merge** - Conditional className utilities
+- **tailwindcss-animate** - Animation utilities for Tailwind
+
+### Development Tools
+- **ESLint** - Code linting with React hooks plugin
+- **gh-pages** - GitHub Pages deployment
 
 ## Features
 
@@ -25,11 +46,14 @@ Modern, minimalist portfolio website showcasing my frontend development skills a
 - 🎨 Blue accent color scheme with high-contrast sections
 - 📱 Fully responsive across all devices
 - 🎭 Smooth scroll with Lenis
-- 🖼️ Parallax effect on hero image
+- 🖼️ Parallax effects and scroll-triggered animations
 - 🎪 Animated marquee name display
-- 🌊 Framer Motion scroll animations
+- 🌊 Advanced animations with Framer Motion and GSAP
 - 🎯 Smooth anchor navigation
 - 🌗 Dark mode support (system preference)
+- 🌍 Multi-language support (i18next integration)
+- 🎨 3D graphics and WebGL effects with Three.js
+- 💎 Post-processing visual effects
 
 ## Project Structure
 
