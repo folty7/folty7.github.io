@@ -60,7 +60,7 @@ This site is deployed on **GitHub Pages**.
 
 ## Contact
 
-- **Email**: [foltadev@gmail.com](mailto:foltadev@gmail.com)
+- **Email**: [andrejjozeffolta@gmail.com](mailto:andrejjozeffolta@gmail.com)
 - **GitHub**: [@folty7](https://github.com/folty7)
 - **LinkedIn**: [Andrej Jozef Folta](https://www.linkedin.com/in/andrej-jozef-fo%C4%BEta-981a3b341/)
 
