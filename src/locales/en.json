@@ -16,7 +16,8 @@
   "hero": {
     "location": "Located in Prague & Trnava",
     "role": "Freelance",
-    "title": "Front-end Developer"
+    "title": "Software Engineer",
+    "subTitle": "(Front-end focus)"
   },
   "about": {
     "heading": "Crafting modern web experiences",
@@ -49,9 +50,9 @@
   "skills": {
     "heading": "Tech Stack",
     "categories": {
-      "frontend": "Frontend Frameworks",
+      "frontend": "Frameworks",
       "languages": "Languages",
-      "styling": "Styling & Design",
+      "styling": "Styling & Animation",
       "tools": "Tools & Additional"
     }
   },
@@ -60,7 +61,7 @@
     "items": {
       "spa": {
         "title": "Single Page Applications",
-        "description": "Implementation of modular SPAs using Vue 3 Composition API and React. Type-safe architecture with TypeScript, Pinia state management, routing systems with protected routes, and REST API integration with error handling."
+        "description": "Implementation of modular SPAs using Vue 3 Composition API or React. Type-safe architecture with TypeScript, Pinia state management, routing systems with protected routes, and REST API integration with error handling."
       },
       "wordpress": {
         "title": "WordPress Development",

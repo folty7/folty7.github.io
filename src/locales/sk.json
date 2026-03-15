@@ -16,7 +16,8 @@
   "hero": {
     "location": "Pôsobím v Prahe a Trnave",
     "role": "Freelance",
-    "title": "Front-end Developer"
+    "title": "Software Engineer",
+    "subTitle": "(Front-end focus)"
   },
   "about": {
     "heading": "Tvorím moderné webové riešenia",
@@ -49,10 +50,10 @@
   "skills": {
     "heading": "Tech Stack",
     "categories": {
-      "frontend": "Frontend Frameworks",
-      "languages": "Languages",
-      "styling": "Styling & Design",
-      "tools": "Tools & Additional"
+      "frontend": "Frameworks",
+      "languages": "Jazyky",
+      "styling": "Štýlovanie & Animácie",
+      "tools": "Nástroje a iné"
     }
   },
   "projects": {
@@ -60,7 +61,7 @@
     "items": {
       "spa": {
         "title": "Single Page Applications",
-        "description": "Implementácia modulárnych SPA pomocou Vue 3 Composition API a React. Type-safe architektúra s TypeScript, Pinia state management, routing systémy s protected routes a REST API integráciou s error handling."
+        "description": "Implementácia modulárnych SPA pomocou Vue 3 Composition API alebo React. Type-safe architektúra s TypeScript, Pinia state management, routing systémy s protected routes a REST API integráciou s error handling."
       },
       "wordpress": {
         "title": "WordPress Development",

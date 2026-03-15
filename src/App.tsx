@@ -230,6 +230,7 @@ function App() {
               <div className="text-3xl md:text-4xl font-light md:text-slate-600 text-white md:drop-shadow-none drop-shadow-[0_2px_10px_rgba(0,0,0,1)]">
                 <div>{t('hero.role')}</div>
                 <div className="md:text-blue-500 text-white">{t('hero.title')}</div>
+                <div className="md:text-blue-500 text-white">{t('hero.subTitle')}</div>
               </div>
             </motion.div>
           </div>
@@ -394,7 +395,7 @@ function App() {
                 <div className="space-y-6">
                   <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider">{t('skills.categories.frontend')}</h3>
                   <div className="space-y-3">
-                    {['Vue.js 3', 'React', 'Pinia', 'Vue Router'].map((skill, index) => (
+                    {['Vue.js 3', 'React.js', 'Node.js'].map((skill, index) => (
                       <motion.div
                         key={skill}
                         initial={{ opacity: 0, x: -10 }}
@@ -412,7 +413,7 @@ function App() {
                 <div className="space-y-6">
                   <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider">{t('skills.categories.languages')}</h3>
                   <div className="space-y-3">
-                    {['TypeScript', 'JavaScript', 'SQL', 'HTML5', 'CSS3'].map((skill, index) => (
+                    {['TypeScript', 'SQL', 'PostgreSQL', 'HTML5'].map((skill, index) => (
                       <motion.div
                         key={skill}
                         initial={{ opacity: 0, x: -10 }}
@@ -430,7 +431,7 @@ function App() {
                 <div className="space-y-6">
                   <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider">{t('skills.categories.styling')}</h3>
                   <div className="space-y-3">
-                    {['TailwindCSS', 'SCSS', 'SASS', 'Bootstrap', 'PrimeVue', 'Figma'].map((skill, index) => (
+                    {['TailwindCSS', 'SCSS', 'Framer Motion', 'Figma'].map((skill, index) => (
                       <motion.div
                         key={skill}
                         initial={{ opacity: 0, x: -10 }}
@@ -448,7 +449,7 @@ function App() {
                 <div className="space-y-6">
                   <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider">{t('skills.categories.tools')}</h3>
                   <div className="space-y-3">
-                    {['Vite', 'Git', 'WordPress', 'REST API', 'GSAP', 'Framer Motion', 'Webpack'].map((skill, index) => (
+                    {['REST API', 'Git', 'Vite', 'WordPress', 'Cursor.ai', 'Claude Code'].map((skill, index) => (
                       <motion.div
                         key={skill}
                         initial={{ opacity: 0, x: -10 }}
@@ -501,13 +502,13 @@ function App() {
                       {t('projects.items.spa.description')}
                     </p>
                     <div className="flex flex-wrap gap-3 pt-2">
-                      <span className="text-sm font-light text-slate-500">Vue 3</span>
-                      <span className="text-slate-300">•</span>
-                      <span className="text-sm font-light text-slate-500">React</span>
+                      <span className="text-sm font-light text-slate-500">Vue / React</span>
                       <span className="text-slate-300">•</span>
                       <span className="text-sm font-light text-slate-500">TypeScript</span>
                       <span className="text-slate-300">•</span>
-                      <span className="text-sm font-light text-slate-500">Pinia</span>
+                      <span className="text-sm font-light text-slate-500">Next.js</span>
+                      <span className="text-slate-300">•</span>
+                      <span className="text-sm font-light text-slate-500">Framer Motion</span>
                     </div>
                   </div>
                 </motion.div>
