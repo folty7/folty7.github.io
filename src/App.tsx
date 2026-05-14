@@ -600,10 +600,10 @@ function App() {
                     <div>
                       <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider mb-2">{t('contact.email')}</h3>
                       <a
-                        href="mailto:andrejjozeffolta@gmail.com"
+                        href="mailto:ondrej4a@gmail.com"
                         className="text-lg font-light text-white hover:text-blue-400 transition-colors"
                       >
-                        andrejjozeffolta@gmail.com
+                        ondrej4a@gmail.com
                       </a>
                     </div>
                   </div>
