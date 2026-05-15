@@ -1,11 +1,28 @@
 import { motion } from 'framer-motion'
-import { Globe, ArrowDown } from 'lucide-react'
+import { ArrowDown, ExternalLink, Github, Globe } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import Lenis from 'lenis'
 import Marquee from "react-fast-marquee"
 import { useTranslation } from 'react-i18next'
 import BubbleMenu from './components/BubbleMenu'
 
+type Service = {
+  title: string
+  description: string
+}
+
+type SkillSection = {
+  title: string
+  items: string[]
+}
+
+type Project = {
+  title: string
+  description: string
+  tags: string[]
+  githubUrl: string | null
+  liveUrl: string | null
+}
 
 function App() {
   const { t, i18n } = useTranslation()
@@ -97,6 +114,10 @@ function App() {
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, '#contact')
     }
   ];
+
+  const services = t('about.services', { returnObjects: true }) as Service[]
+  const skillSections = t('skills.sections', { returnObjects: true }) as SkillSection[]
+  const projects = t('projects.items', { returnObjects: true }) as Project[]
 
   return (
     <>
@@ -289,50 +310,22 @@ function App() {
               </motion.h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-                {/* Vue.js Expertise */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="space-y-8 border-t border-slate-200 pt-8"
-                >
-                  <div className="text-slate-400 text-sm font-light">01</div>
-                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900">{t('about.services.vue.title')}</h4>
-                  <p className="text-base font-light text-slate-600 leading-relaxed">
-                    {t('about.services.vue.description')}
-                  </p>
-                </motion.div>
-
-                {/* WordPress Development */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="space-y-8 border-t border-slate-200 pt-8"
-                >
-                  <div className="text-slate-400 text-sm font-light">02</div>
-                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900">{t('about.services.wordpress.title')}</h4>
-                  <p className="text-base font-light text-slate-600 leading-relaxed">
-                    {t('about.services.wordpress.description')}
-                  </p>
-                </motion.div>
-
-                {/* UI/UX & Modern Stack */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="space-y-8 border-t border-slate-200 pt-8"
-                >
-                  <div className="text-slate-400 text-sm font-light">03</div>
-                  <h4 className="text-3xl md:text-4xl font-normal text-slate-900">{t('about.services.uiux.title')}</h4>
-                  <p className="text-base font-light text-slate-600 leading-relaxed">
-                    {t('about.services.uiux.description')}
-                  </p>
-                </motion.div>
+                {services.map((service, index) => (
+                  <motion.div
+                    key={service.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+                    className="space-y-8 border-t border-slate-200 pt-8"
+                  >
+                    <div className="text-slate-400 text-sm font-light">{String(index + 1).padStart(2, '0')}</div>
+                    <h4 className="text-3xl md:text-4xl font-normal text-slate-900">{service.title}</h4>
+                    <p className="text-base font-light text-slate-600 leading-relaxed">
+                      {service.description}
+                    </p>
+                  </motion.div>
+                ))}
               </div>
             </div>
 
@@ -347,7 +340,7 @@ function App() {
               <h3 className="text-3xl md:text-4xl font-light tracking-tight text-slate-900">{t('about.resultsHeading')}</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
                 <div className="space-y-3">
-                  <div className="text-5xl font-light text-blue-600">10+</div>
+                  <div className="text-5xl font-light text-blue-600">15+</div>
                   <p className="text-base font-light text-slate-600">{t('about.results.projects')}</p>
                 </div>
                 <div className="space-y-3">
@@ -392,77 +385,25 @@ function App() {
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16">
-                <div className="space-y-6">
-                  <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider">{t('skills.categories.frontend')}</h3>
-                  <div className="space-y-3">
-                    {['Vue.js 3', 'React.js', 'Node.js'].map((skill, index) => (
-                      <motion.div
-                        key={skill}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                        className="text-lg font-light text-slate-300"
-                      >
-                        {skill}
-                      </motion.div>
-                    ))}
+                {skillSections.map((section) => (
+                  <div key={section.title} className="space-y-6">
+                    <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider">{section.title}</h3>
+                    <div className="space-y-3">
+                      {section.items.map((skill, index) => (
+                        <motion.div
+                          key={skill}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                          className="text-lg font-light text-slate-300"
+                        >
+                          {skill}
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-
-                <div className="space-y-6">
-                  <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider">{t('skills.categories.languages')}</h3>
-                  <div className="space-y-3">
-                    {['TypeScript', 'SQL', 'PostgreSQL', 'HTML5'].map((skill, index) => (
-                      <motion.div
-                        key={skill}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                        className="text-lg font-light text-slate-300"
-                      >
-                        {skill}
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-6">
-                  <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider">{t('skills.categories.styling')}</h3>
-                  <div className="space-y-3">
-                    {['TailwindCSS', 'SCSS', 'Framer Motion', 'Figma'].map((skill, index) => (
-                      <motion.div
-                        key={skill}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                        className="text-lg font-light text-slate-300"
-                      >
-                        {skill}
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-6">
-                  <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider">{t('skills.categories.tools')}</h3>
-                  <div className="space-y-3">
-                    {['REST API', 'Git', 'Vite', 'WordPress', 'Cursor.ai', 'Claude Code'].map((skill, index) => (
-                      <motion.div
-                        key={skill}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                        className="text-lg font-light text-slate-300"
-                      >
-                        {skill}
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
+                ))}
               </div>
             </motion.div>
           </div>
@@ -483,95 +424,79 @@ function App() {
               </h2>
 
               <div className="space-y-24">
-                {/* Project 1 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-slate-200 pt-8"
-                >
-                  <div className="md:col-span-1">
-                    <h3 className="text-sm font-light text-slate-400 uppercase tracking-wider mb-2">01</h3>
-                    <h4 className="text-2xl md:text-3xl font-normal text-slate-900">
-                      {t('projects.items.spa.title')}
-                    </h4>
-                  </div>
-                  <div className="md:col-span-2 space-y-4">
-                    <p className="text-base font-light text-slate-600 leading-relaxed">
-                      {t('projects.items.spa.description')}
-                    </p>
-                    <div className="flex flex-wrap gap-3 pt-2">
-                      <span className="text-sm font-light text-slate-500">Vue / React</span>
-                      <span className="text-slate-300">•</span>
-                      <span className="text-sm font-light text-slate-500">TypeScript</span>
-                      <span className="text-slate-300">•</span>
-                      <span className="text-sm font-light text-slate-500">Next.js</span>
-                      <span className="text-slate-300">•</span>
-                      <span className="text-sm font-light text-slate-500">Framer Motion</span>
+                {projects.map((project, index) => (
+                  <motion.div
+                    key={project.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
+                    className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-slate-200 pt-8"
+                  >
+                    <div className="md:col-span-1">
+                      <h3 className="text-sm font-light text-slate-400 uppercase tracking-wider mb-2">{String(index + 1).padStart(2, '0')}</h3>
+                      <h4 className="text-2xl md:text-3xl font-normal text-slate-900">
+                        {project.title}
+                      </h4>
                     </div>
-                  </div>
-                </motion.div>
+                    <div className="md:col-span-2 space-y-4">
+                      <p className="text-base font-light text-slate-600 leading-relaxed">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-3 pt-2">
+                        {project.tags.map((tag, tagIndex) => (
+                          <div key={tag} className="flex items-center gap-3">
+                            {tagIndex > 0 && <span className="text-slate-300">•</span>}
+                            <span className="text-sm font-light text-slate-500">{tag}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex flex-wrap gap-3 pt-4">
+                        {project.githubUrl ? (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded border border-slate-300 px-4 py-2 text-sm font-light text-slate-700 transition-colors hover:border-slate-900 hover:text-slate-900"
+                          >
+                            <Github className="h-4 w-4" />
+                            <span>GitHub</span>
+                          </a>
+                        ) : (
+                          <button
+                            type="button"
+                            disabled
+                            className="inline-flex cursor-not-allowed items-center gap-2 rounded border border-slate-200 px-4 py-2 text-sm font-light text-slate-400"
+                          >
+                            <Github className="h-4 w-4" />
+                            <span>GitHub</span>
+                          </button>
+                        )}
 
-                {/* Project 2 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-slate-200 pt-8"
-                >
-                  <div className="md:col-span-1">
-                    <h3 className="text-sm font-light text-slate-400 uppercase tracking-wider mb-2">02</h3>
-                    <h4 className="text-2xl md:text-3xl font-normal text-slate-900">
-                      {t('projects.items.wordpress.title')}
-                    </h4>
-                  </div>
-                  <div className="md:col-span-2 space-y-4">
-                    <p className="text-base font-light text-slate-600 leading-relaxed">
-                      {t('projects.items.wordpress.description')}
-                    </p>
-                    <div className="flex flex-wrap gap-3 pt-2">
-                      <span className="text-sm font-light text-slate-500">WordPress</span>
-                      <span className="text-slate-300">•</span>
-                      <span className="text-sm font-light text-slate-500">SCSS</span>
-                      <span className="text-slate-300">•</span>
-                      <span className="text-sm font-light text-slate-500">Webpack</span>
-                      <span className="text-slate-300">•</span>
-                      <span className="text-sm font-light text-slate-500">SEO</span>
+                        {project.liveUrl ? (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded bg-slate-900 px-4 py-2 text-sm font-light text-white transition-colors hover:bg-blue-600"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            <span>Live preview</span>
+                          </a>
+                        ) : (
+                          <button
+                            type="button"
+                            disabled
+                            className="inline-flex cursor-not-allowed items-center gap-2 rounded bg-slate-100 px-4 py-2 text-sm font-light text-slate-400"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            <span>Live preview</span>
+                          </button>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-
-                {/* Project 3 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-slate-200 pt-8"
-                >
-                  <div className="md:col-span-1">
-                    <h3 className="text-sm font-light text-slate-400 uppercase tracking-wider mb-2">03</h3>
-                    <h4 className="text-2xl md:text-3xl font-normal text-slate-900">
-                      {t('projects.items.uiux.title')}
-                    </h4>
-                  </div>
-                  <div className="md:col-span-2 space-y-4">
-                    <p className="text-base font-light text-slate-600 leading-relaxed">
-                      {t('projects.items.uiux.description')}
-                    </p>
-                    <div className="flex flex-wrap gap-3 pt-2">
-                      <span className="text-sm font-light text-slate-500">TailwindCSS</span>
-                      <span className="text-slate-300">•</span>
-                      <span className="text-sm font-light text-slate-500">Figma</span>
-                      <span className="text-slate-300">•</span>
-                      <span className="text-sm font-light text-slate-500">GSAP</span>
-                      <span className="text-slate-300">•</span>
-                      <span className="text-sm font-light text-slate-500">PrimeVue</span>
-                    </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </div>

@@ -14,30 +14,30 @@
     "contact": "contact"
   },
   "hero": {
-    "location": "Located in Prague & Trnava",
+    "location": "Located in Prague",
     "role": "Freelance",
     "title": "Software Engineer",
     "subTitle": "(Front-end focus)"
   },
   "about": {
     "heading": "Crafting modern web experiences",
-    "intro": "I'm an Applied Informatics student with 4 years of frontend development experience. I specialize in building modern, responsive web applications.",
+    "intro": "I'm an Applied Informatics student with 4 years of commercial development experience, now building across the full stack. I specialize in React 19 applications backed by Node.js APIs — with production deployments integrating OAuth flows, LLM APIs, and containerized microservices. Vue.js and WordPress remain active tools from years of client work.",
     "description": "I develop web solutions for diverse clients - from startups to established companies. My work combines modern design with clean code and a focus on user experience.",
     "whatIOffer": "What I offer",
-    "services": {
-      "vue": {
-        "title": "Vue.js SPA Development",
-        "description": "Implementation of modular Single Page Applications using Vue 3 Composition API with TypeScript. Type-safe architecture, Pinia state management, routing with protected routes, and REST API integration."
+    "services": [
+      {
+        "title": "React 19 Full-Stack Development",
+        "description": "End-to-end SPA development with React 19, TypeScript, and Node.js/Express backends. OAuth integrations, REST API design, Zustand/TanStack Query state architecture, and deployments across Vercel + Railway with Docker."
       },
-      "wordpress": {
-        "title": "WordPress Custom Development",
-        "description": "Development of custom WordPress themes with advanced SCSS and custom build process. Performance optimization, SEO tuning, and integration of modern JavaScript libraries."
+      {
+        "title": "Vue.js SPA & WordPress Development",
+        "description": "Production Vue 3 applications with Composition API, TypeScript, and Pinia — plus custom WordPress themes with SCSS build pipelines, GSAP animations, and performance optimization for commercial clients."
       },
-      "uiux": {
-        "title": "UI/UX & Modern Tooling",
-        "description": "Design and implementation of responsive UI components with TailwindCSS and SCSS. GSAP animations, dark/light theme switching, and setup of modern build tools (Vite, Gulp)."
+      {
+        "title": "API & AI Integrations",
+        "description": "Third-party API integration including Spotify OAuth 2.0 and Google Gemini with structured schema prompting. Experience designing gateway-proxied microservice architectures in Docker Compose with JWT and OAuth authentication strategies."
       }
-    },
+    ],
     "resultsHeading": "Achievements",
     "results": {
       "projects": "successfully delivered projects of varying complexity",
@@ -45,33 +45,69 @@
     },
     "resultsDescription": "Improved load times by implementing lazy loading and code splitting. Created reusable component libraries reducing development time. Modern workflow with AI tools, with emphasis on code understanding.",
     "currentlyHeading": "Currently:",
-    "currentlyDescription": "I'm looking for internship opportunities or freelance work where I can bring value with my experience while learning from more experienced developers. I'm open to remote and hybrid positions."
+    "currentlyDescription": "I'm open to junior or medior frontend and full-stack roles where I can contribute with production-level React and Node.js experience while continuing to grow. Remote, hybrid, and on-site positions considered."
   },
   "skills": {
     "heading": "Tech Stack",
-    "categories": {
-      "frontend": "Frameworks",
-      "languages": "Languages",
-      "styling": "Styling & Animation",
-      "tools": "Tools & Additional"
-    }
+    "sections": [
+      {
+        "title": "Frameworks",
+        "items": ["React 19", "Vue.js 3", "Node.js / Express", "Sails.js · FeathersJS"]
+      },
+      {
+        "title": "Languages",
+        "items": ["TypeScript", "JavaScript", "SQL"]
+      },
+      {
+        "title": "Databases & ORM",
+        "items": ["PostgreSQL · Prisma", "MongoDB"]
+      },
+      {
+        "title": "Styling & Animation",
+        "items": ["Tailwind CSS 4", "SCSS", "Framer Motion", "Three.js (WebGL/GLSL)"]
+      },
+      {
+        "title": "Auth & APIs",
+        "items": ["Spotify OAuth 2.0", "Google Gemini API", "JWT · bcrypt", "GitHub/Google OAuth"]
+      },
+      {
+        "title": "Tools & Infra",
+        "items": ["Docker · Docker Compose", "Vercel · Railway", "Vite · Git", "WordPress", "Cursor.ai · Claude Code"]
+      }
+    ]
   },
   "projects": {
     "heading": "Featured Work",
-    "items": {
-      "spa": {
-        "title": "Single Page Applications",
-        "description": "Implementation of modular SPAs using Vue 3 Composition API or React. Type-safe architecture with TypeScript, Pinia state management, routing systems with protected routes, and REST API integration with error handling."
+    "items": [
+      {
+        "title": "Lyra — Spotify AI Library Organizer",
+        "description": "A full-stack app that authenticates with Spotify, ingests up to 5,000 saved tracks, and uses Google Gemini to generate playlist suggestions by genre, mood, and activity. Users review, edit, and push playlists directly back to Spotify.",
+        "tags": ["React 19", "Node.js", "Express", "Spotify API", "Google Gemini", "Zustand", "Tailwind CSS", "Docker", "Vercel", "Railway"],
+        "githubUrl": "https://github.com/folty7/Lyra",
+        "liveUrl": "https://lyra-omega-six.vercel.app/"
       },
-      "wordpress": {
-        "title": "WordPress Development",
-        "description": "Development of custom WordPress themes with advanced SCSS and custom build process (Gulp, Webpack). Integration of modern JavaScript libraries, performance optimization, SEO tuning, and successful WordPress site migrations."
+      {
+        "title": "Personal Blog / CMS",
+        "description": "A TypeScript monorepo blog platform with authenticated authoring, comment threads, tag organization, image upload with media picker, and a custom Three.js WebGL animated background. 21 REST endpoints backed by PostgreSQL via Prisma.",
+        "tags": ["React 19", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL", "TanStack Query", "Framer Motion", "Three.js", "Docker"],
+        "githubUrl": "https://github.com/folty7/my-blog",
+        "liveUrl": "https://my-blog-frontend-red-nine.vercel.app/"
       },
-      "uiux": {
-        "title": "UI/UX Design & Animations",
-        "description": "Design and implementation of responsive UI components (PrimeVue, TailwindCSS, Bootstrap). Dark/light theme switching, advanced animations using GSAP, and creation of consistent design systems in Figma."
+      {
+        "title": "Microservice Logger",
+        "description": "A 5-service Docker Compose logging platform with a Sails.js API gateway proxying to FeathersJS microservices backed by MongoDB. Schema-driven data layer with JWT + OAuth auth strategies and sensitive field masking in gateway middleware.",
+        "tags": ["React 19", "TypeScript", "Sails.js", "FeathersJS", "MongoDB", "Docker Compose", "JWT", "OAuth"],
+        "githubUrl": "https://github.com/folty7/microservice-logger",
+        "liveUrl": null
+      },
+      {
+        "title": "UCM Connect — University Platform",
+        "description": "Lead frontend developer on a Reddit-inspired community platform for the University of St. Cyril and Methodius. Vue 3, TypeScript, Pinia state management, PrimeVue components, REST API integration, and Figma UI design.",
+        "tags": ["Vue.js 3", "TypeScript", "Pinia", "PrimeVue", "REST API", "Figma"],
+        "githubUrl": null,
+        "liveUrl": "https://www.ucm-connect.sk/"
       }
-    }
+    ]
   },
   "contact": {
     "heading": "Let's work together",

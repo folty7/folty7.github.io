@@ -14,30 +14,30 @@
     "contact": "kontakt"
   },
   "hero": {
-    "location": "Pôsobím v Prahe a Trnave",
+    "location": "Pôsobím v Prahe",
     "role": "Freelance",
     "title": "Software Engineer",
     "subTitle": "(Front-end focus)"
   },
   "about": {
     "heading": "Tvorím moderné webové riešenia",
-    "intro": "Som študent Aplikovanej informatiky so 4-ročnou praxou vo frontend developmente. Špecializujem sa na tvorbu moderných, responzívnych webových aplikácií.",
+    "intro": "Som študent Aplikovanej informatiky so 4-ročnou komerčnou developerskou praxou a dnes staviam riešenia naprieč full stackom. Špecializujem sa na aplikácie v Reacte 19 postavené na Node.js API - s produkčnými nasadeniami integrujúcimi OAuth procesy, LLM API a kontajnerizované mikroservisy. Vue.js a WordPress zostávajú aktívnymi nástrojmi z rokov klientskej práce.",
     "description": "Vyvíjam webové riešenia pre rôznorodých klientov - od startupov po etablované firmy. Moja práca kombinuje moderný dizajn s čistým kódom a dôrazom na užívateľskú skúsenosť.",
     "whatIOffer": "Čo ponúkam",
-    "services": {
-      "vue": {
-        "title": "Vue.js SPA Development",
-        "description": "Implementácia modulárnych Single Page Applications pomocou Vue 3 Composition API s TypeScript. Type-safe architektúra, Pinia state management, routing s protected routes a REST API integrácia."
+    "services": [
+      {
+        "title": "React 19 Full-Stack vývoj",
+        "description": "End-to-end vývoj SPA s Reactom 19, TypeScriptom a Node.js/Express backendmi. OAuth integrácie, návrh REST API, stavová architektúra so Zustand/TanStack Query a nasadenia cez Vercel + Railway s Dockerom."
       },
-      "wordpress": {
-        "title": "WordPress Custom Development",
-        "description": "Vývoj custom WordPress tém s pokročilým SCSS a vlastným build procesom. Performance optimalizácia, SEO tuning a integrácia moderných JavaScript knižníc."
+      {
+        "title": "Vue.js SPA & WordPress vývoj",
+        "description": "Produkčné Vue 3 aplikácie s Composition API, TypeScriptom a Pinia - plus custom WordPress témy so SCSS build pipeline, GSAP animáciami a performance optimalizáciou pre komerčných klientov."
       },
-      "uiux": {
-        "title": "UI/UX & Modern Tooling",
-        "description": "Design a implementácia responzívnych UI komponentov s TailwindCSS a SCSS. GSAP animácie, dark/light theme switching a setup moderných build nástrojov (Vite, Gulp)."
+      {
+        "title": "API & AI integrácie",
+        "description": "Integrácia third-party API vrátane Spotify OAuth 2.0 a Google Gemini so structured schema promptingom. Skúsenosti s návrhom gateway-proxied mikroservisných architektúr v Docker Compose s JWT a OAuth autentifikačnými stratégiami."
       }
-    },
+    ],
     "resultsHeading": "Dosiahnuté výsledky",
     "results": {
       "projects": "úspešne dodaných projektov rôznej komplexnosti",
@@ -45,33 +45,69 @@
     },
     "resultsDescription": "Zlepšenie load time implementáciou lazy loading a code splitting. Vytvorenie reusable component libraries znižujúcich development time. Moderný workflow s pomocou AI nástrojov, s dôrazom na porozumenie kódu.",
     "currentlyHeading": "Aktuálne:",
-    "currentlyDescription": "Hľadám príležitosti na internship alebo prácu na dohodu, kde môžem priniesť hodnotu svojimi skúsenosťami a zároveň sa učiť od skúsenejších developerov. Som otvorený pre remote aj hybrid pozície."
+    "currentlyDescription": "Som otvorený junior alebo medior frontendovým a full-stack pozíciám, kde môžem prispieť produkčnou skúsenosťou s Reactom a Node.js a zároveň ďalej rásť. Zvažujem remote, hybridné aj on-site pozície."
   },
   "skills": {
     "heading": "Tech Stack",
-    "categories": {
-      "frontend": "Frameworks",
-      "languages": "Jazyky",
-      "styling": "Štýlovanie & Animácie",
-      "tools": "Nástroje a iné"
-    }
+    "sections": [
+      {
+        "title": "Frameworky",
+        "items": ["React 19", "Vue.js 3", "Node.js / Express", "Sails.js · FeathersJS"]
+      },
+      {
+        "title": "Jazyky",
+        "items": ["TypeScript", "JavaScript", "SQL"]
+      },
+      {
+        "title": "Databázy & ORM",
+        "items": ["PostgreSQL · Prisma", "MongoDB"]
+      },
+      {
+        "title": "Štýlovanie & Animácie",
+        "items": ["Tailwind CSS 4", "SCSS", "Framer Motion", "Three.js (WebGL/GLSL)"]
+      },
+      {
+        "title": "Auth & API",
+        "items": ["Spotify OAuth 2.0", "Google Gemini API", "JWT · bcrypt", "GitHub/Google OAuth"]
+      },
+      {
+        "title": "Nástroje & infraštruktúra",
+        "items": ["Docker · Docker Compose", "Vercel · Railway", "Vite · Git", "WordPress", "Cursor.ai · Claude Code"]
+      }
+    ]
   },
   "projects": {
     "heading": "Featured Work",
-    "items": {
-      "spa": {
-        "title": "Single Page Applications",
-        "description": "Implementácia modulárnych SPA pomocou Vue 3 Composition API alebo React. Type-safe architektúra s TypeScript, Pinia state management, routing systémy s protected routes a REST API integráciou s error handling."
+    "items": [
+      {
+        "title": "Lyra — Spotify AI Library Organizer",
+        "description": "Full-stack aplikácia, ktorá autentifikuje používateľa cez Spotify, načíta až 5 000 uložených skladieb a využíva Google Gemini na generovanie návrhov playlistov podľa žánru, nálady a aktivity. Používatelia môžu playlisty skontrolovať, upraviť a odoslať priamo späť do Spotify.",
+        "tags": ["React 19", "Node.js", "Express", "Spotify API", "Google Gemini", "Zustand", "Tailwind CSS", "Docker", "Vercel", "Railway"],
+        "githubUrl": "https://github.com/folty7/Lyra",
+        "liveUrl": "https://lyra-omega-six.vercel.app/"
       },
-      "wordpress": {
-        "title": "WordPress Development",
-        "description": "Vývoj custom WordPress tém s pokročilým SCSS a vlastným build procesom (Gulp, Webpack). Integrácia moderných JavaScript knižníc, performance optimalizácia, SEO tuning a úspešné migrácie WordPress sites."
+      {
+        "title": "Osobný blog / CMS",
+        "description": "TypeScript monorepo blogová platforma s autentifikovanou administráciou obsahu, vláknami komentárov, organizáciou tagov, nahrávaním obrázkov s media pickerom a custom Three.js WebGL animovaným pozadím. 21 REST endpointov beží nad PostgreSQL cez Prisma.",
+        "tags": ["React 19", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL", "TanStack Query", "Framer Motion", "Three.js", "Docker"],
+        "githubUrl": "https://github.com/folty7/my-blog",
+        "liveUrl": "https://my-blog-frontend-red-nine.vercel.app/"
       },
-      "uiux": {
-        "title": "UI/UX Design & Animations",
-        "description": "Design a implementácia responzívnych UI komponentov (PrimeVue, TailwindCSS, Bootstrap). Dark/light theme switching, pokročilé animácie pomocou GSAP a vytvorenie konzistentných design systémov vo Figma."
+      {
+        "title": "Microservice Logger",
+        "description": "5-service Docker Compose logging platforma so Sails.js API gateway, ktorá proxyuje FeathersJS mikroservisy nad MongoDB. Schema-driven dátová vrstva s JWT + OAuth autentifikačnými stratégiami a maskovaním citlivých polí v gateway middleware.",
+        "tags": ["React 19", "TypeScript", "Sails.js", "FeathersJS", "MongoDB", "Docker Compose", "JWT", "OAuth"],
+        "githubUrl": "https://github.com/folty7/microservice-logger",
+        "liveUrl": null
+      },
+      {
+        "title": "UCM Connect — univerzitná platforma",
+        "description": "Lead frontend developer na komunitnej platforme inšpirovanej Redditom pre Univerzitu sv. Cyrila a Metoda. Vue 3, TypeScript, Pinia state management, PrimeVue komponenty, REST API integrácia a Figma UI dizajn.",
+        "tags": ["Vue.js 3", "TypeScript", "Pinia", "PrimeVue", "REST API", "Figma"],
+        "githubUrl": null,
+        "liveUrl": "https://www.ucm-connect.sk/"
       }
-    }
+    ]
   },
   "contact": {
     "heading": "Vytvorme spolu niečo nové",
