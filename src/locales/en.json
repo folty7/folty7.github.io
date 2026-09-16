@@ -145,21 +145,23 @@
     ]
   },
   "projectDetail": {
-    "back": "Index",
-    "backToAll": "Back to all",
-    "eyebrow": "What I've built",
-    "typeLabel": "Type",
+    "back": "Back to work",
+    "overviewHeading": "Overview",
     "roleLabel": "My role",
-    "stackLabel": "Stack",
+    "stackHeading": "Tech stack",
     "linksLabel": "Links",
+    "resultsHeading": "In numbers",
     "workedOnHeading": "What I worked on",
-    "screensHeading": "Screens",
+    "galleryHeading": "Selected views",
     "hardestHeading": "The hardest problem",
     "learnedHeading": "What I've learned",
-    "viewLive": "Live site",
-    "nextProject": "Next",
+    "ctaHeading": "Curious to see it live?",
+    "viewLive": "Open live site",
+    "viewGithub": "View on GitHub",
+    "nextProject": "Next project",
     "notFoundHeading": "Project not found",
-    "notFoundDescription": "The project you are looking for does not exist or has been moved."
+    "notFoundDescription": "The project you are looking for does not exist or has been moved.",
+    "notFoundCta": "Return to featured work"
   },
   "contact": {
     "heading": "Let's work together",

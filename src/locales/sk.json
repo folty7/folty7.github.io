@@ -145,21 +145,23 @@
     ]
   },
   "projectDetail": {
-    "back": "Index",
-    "backToAll": "Späť na všetky",
-    "eyebrow": "Čo som postavil",
-    "typeLabel": "Typ",
+    "back": "Späť na portfólio",
+    "overviewHeading": "Prehľad",
     "roleLabel": "Moja rola",
-    "stackLabel": "Stack",
+    "stackHeading": "Tech stack",
     "linksLabel": "Odkazy",
+    "resultsHeading": "V číslach",
     "workedOnHeading": "Na čom som pracoval",
-    "screensHeading": "Obrazovky",
+    "galleryHeading": "Vybrané pohľady",
     "hardestHeading": "Najťažší problém",
     "learnedHeading": "Čo som sa naučil",
-    "viewLive": "Live stránka",
-    "nextProject": "Ďalší",
+    "ctaHeading": "Chcete to vidieť naživo?",
+    "viewLive": "Otvoriť live stránku",
+    "viewGithub": "Pozrieť na GitHub",
+    "nextProject": "Ďalší projekt",
     "notFoundHeading": "Projekt sa nenašiel",
-    "notFoundDescription": "Hľadaný projekt neexistuje alebo bol presunutý."
+    "notFoundDescription": "Hľadaný projekt neexistuje alebo bol presunutý.",
+    "notFoundCta": "Späť na featured work"
   },
   "contact": {
     "heading": "Vytvorme spolu niečo nové",
