@@ -10,6 +10,7 @@
     "home": "home",
     "about": "about",
     "skills": "tech stack",
+    "education": "education",
     "projects": "projects",
     "contact": "contact"
   },
@@ -47,6 +48,27 @@
     "currentlyHeading": "Currently:",
     "currentlyDescription": "I'm open to junior or medior frontend and full-stack roles where I can contribute with production-level React and Node.js experience while continuing to grow. Remote, hybrid, and on-site positions considered."
   },
+  "education": {
+    "heading": "Education & focus",
+    "intro": "I combine formal computer science studies with commercial practice — testing the theory on real production projects.",
+    "statusLabel": "Status",
+    "items": [
+      {
+        "degree": "Ing. — in progress",
+        "school": "CTU FIT, Prague",
+        "field": "Applied Informatics — Software Engineering",
+        "status": "In progress",
+        "description": "Master's studies focused on software system design and architecture, code quality, and engineering practices for larger-scale applications."
+      },
+      {
+        "degree": "Bc. — completed",
+        "school": "University of Ss. Cyril and Methodius, Trnava",
+        "field": "Applied Informatics",
+        "status": "Completed",
+        "description": "Bachelor's degree covering programming, data structures, databases, networks, and web application development."
+      }
+    ]
+  },
   "skills": {
     "heading": "Tech Stack",
     "sections": [
@@ -78,15 +100,18 @@
   },
   "projects": {
     "heading": "Featured Work",
+    "viewCaseStudy": "View case study",
     "items": [
       {
+        "slug": "lyra",
         "title": "Lyra — Spotify AI Library Organizer",
         "description": "A full-stack app that authenticates with Spotify, ingests up to 5,000 saved tracks, and uses Google Gemini to generate playlist suggestions by genre, mood, and activity. Users review, edit, and push playlists directly back to Spotify.",
         "tags": ["React 19", "Node.js", "Express", "Spotify API", "Google Gemini", "Zustand", "Tailwind CSS", "Docker", "Vercel", "Railway"],
         "githubUrl": "https://github.com/folty7/Lyra",
-        "liveUrl": "https://lyra-omega-six.vercel.app/"
+        "liveUrl": "https://lyra-fe-production.up.railway.app/"
       },
       {
+        "slug": "personal-blog",
         "title": "Personal Blog / CMS",
         "description": "A TypeScript monorepo blog platform with authenticated authoring, comment threads, tag organization, image upload with media picker, and a custom Three.js WebGL animated background. 21 REST endpoints backed by PostgreSQL via Prisma.",
         "tags": ["React 19", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL", "TanStack Query", "Framer Motion", "Three.js", "Docker"],
@@ -94,6 +119,7 @@
         "liveUrl": "https://my-blog-frontend-red-nine.vercel.app/"
       },
       {
+        "slug": "microservice-logger",
         "title": "Microservice Logger",
         "description": "A 5-service Docker Compose logging platform with a Sails.js API gateway proxying to FeathersJS microservices backed by MongoDB. Schema-driven data layer with JWT + OAuth auth strategies and sensitive field masking in gateway middleware.",
         "tags": ["React 19", "TypeScript", "Sails.js", "FeathersJS", "MongoDB", "Docker Compose", "JWT", "OAuth"],
@@ -101,13 +127,41 @@
         "liveUrl": null
       },
       {
+        "slug": "ucm-connect",
         "title": "UCM Connect — University Platform",
         "description": "Lead frontend developer on a Reddit-inspired community platform for the University of St. Cyril and Methodius. Vue 3, TypeScript, Pinia state management, PrimeVue components, REST API integration, and Figma UI design.",
         "tags": ["Vue.js 3", "TypeScript", "Pinia", "PrimeVue", "REST API", "Figma"],
         "githubUrl": null,
         "liveUrl": "https://www.ucm-connect.sk/"
+      },
+      {
+        "slug": "svatomarianska-put",
+        "title": "Svätomariánska púť",
+        "description": "A highly interactive WordPress website for the Prešov Region Government. Custom frontend built from Figma to pixel-perfect, responsive layouts in SCSS, with GSAP animations, Swiper.js sliders, custom JavaScript components, asset optimization via Gulp, and BrowserStack-verified cross-browser compatibility.",
+        "tags": ["WordPress", "SCSS", "JavaScript", "GSAP", "Swiper.js", "Gulp", "Figma", "BrowserStack"],
+        "githubUrl": null,
+        "liveUrl": "https://svatomarianskaput.sk/"
       }
     ]
+  },
+  "projectDetail": {
+    "back": "Back to work",
+    "roleLabel": "Role",
+    "clientLabel": "Client",
+    "yearLabel": "Year",
+    "overviewHeading": "Overview",
+    "contributionsHeading": "What I built",
+    "stackHeading": "Tech stack",
+    "galleryHeading": "Selected views",
+    "galleryPlaceholder": "Image placeholder",
+    "ctaHeading": "Curious to see it live?",
+    "ctaDescription": "The site is in production and continues to serve thousands of pilgrims and visitors each season.",
+    "viewLive": "Open live site",
+    "viewGithub": "View on GitHub",
+    "nextProject": "Next project",
+    "notFoundHeading": "Project not found",
+    "notFoundDescription": "The project you are looking for does not exist or has been moved.",
+    "notFoundCta": "Return to featured work"
   },
   "contact": {
     "heading": "Let's work together",

@@ -1,70 +1,44 @@
-import { motion } from 'framer-motion'
-import { ArrowDown, ExternalLink, Github, Globe } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
-import Lenis from 'lenis'
-import Marquee from "react-fast-marquee"
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import BubbleMenu from './components/BubbleMenu'
+import { LenisProvider, useLenis } from './context/LenisContext'
+import Home from './pages/Home'
+import ProjectDetail from './pages/ProjectDetail'
 
-type Service = {
-  title: string
-  description: string
-}
+function GlobalMenu() {
+  const { t } = useTranslation()
+  const { lenis } = useLenis()
+  const location = useLocation()
+  const navigate = useNavigate()
 
-type SkillSection = {
-  title: string
-  items: string[]
-}
-
-type Project = {
-  title: string
-  description: string
-  tags: string[]
-  githubUrl: string | null
-  liveUrl: string | null
-}
-
-function App() {
-  const { t, i18n } = useTranslation()
-  const lenisRef = useRef<Lenis | null>(null)
-  const [scrollY, setScrollY] = useState(0)
-
-  useEffect(() => {
-    // Initialize Lenis smooth scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-    })
-
-    lenisRef.current = lenis
-
-    // Update scroll position for parallax effect
-    lenis.on('scroll', ({ scroll }: { scroll: number }) => {
-      setScrollY(scroll)
-    })
-
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
+  const goToSection = (targetId: string) => {
+    if (location.pathname !== '/') {
+      navigate('/')
+      // wait for Home to mount and Lenis to reset, then scroll
+      setTimeout(() => {
+        const el = document.querySelector(targetId) as HTMLElement | null
+        if (el && lenis) {
+          lenis.scrollTo(el, { offset: 0, duration: 2 })
+        } else if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 250)
+      return
     }
-
-    requestAnimationFrame(raf)
-
-    return () => {
-      lenis.destroy()
-      lenisRef.current = null
+    const target = document.querySelector(targetId) as HTMLElement | null
+    if (target && lenis) {
+      lenis.scrollTo(target, { offset: 0, duration: 2 })
+    } else if (target) {
+      target.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [])
+  }
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault()
-    const target = document.querySelector(targetId) as HTMLElement
-    if (target && lenisRef.current) {
-      lenisRef.current.scrollTo(target, {
-        offset: 0,
-        duration: 2
-      })
+  const goToTop = () => {
+    if (location.pathname !== '/') {
+      navigate('/')
+      return
     }
+    if (lenis) lenis.scrollTo(0, { duration: 2 })
   }
 
   const items = [
@@ -76,9 +50,7 @@ function App() {
       hoverStyles: { bgColor: '#3b82f6', textColor: '#ffffff' },
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
-        if (lenisRef.current) {
-          lenisRef.current.scrollTo(0, { duration: 2 })
-        }
+        goToTop()
       }
     },
     {
@@ -87,7 +59,21 @@ function App() {
       ariaLabel: t('menu.about'),
       rotation: 8,
       hoverStyles: { bgColor: '#10b981', textColor: '#ffffff' },
-      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, '#about')
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        goToSection('#about')
+      }
+    },
+    {
+      label: t('menu.education'),
+      href: '#education',
+      ariaLabel: t('menu.education'),
+      rotation: -8,
+      hoverStyles: { bgColor: '#06b6d4', textColor: '#ffffff' },
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        goToSection('#education')
+      }
     },
     {
       label: t('menu.skills'),
@@ -95,7 +81,10 @@ function App() {
       ariaLabel: t('menu.skills'),
       rotation: 8,
       hoverStyles: { bgColor: '#ef4444', textColor: '#ffffff' },
-      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, '#skills')
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        goToSection('#skills')
+      }
     },
     {
       label: t('menu.projects'),
@@ -103,7 +92,10 @@ function App() {
       ariaLabel: t('menu.projects'),
       rotation: 8,
       hoverStyles: { bgColor: '#f59e0b', textColor: '#ffffff' },
-      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, '#projects')
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        goToSection('#projects')
+      }
     },
     {
       label: t('menu.contact'),
@@ -111,469 +103,37 @@ function App() {
       ariaLabel: t('menu.contact'),
       rotation: -8,
       hoverStyles: { bgColor: '#8b5cf6', textColor: '#ffffff' },
-      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, '#contact')
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        goToSection('#contact')
+      }
     }
-  ];
-
-  const services = t('about.services', { returnObjects: true }) as Service[]
-  const skillSections = t('skills.sections', { returnObjects: true }) as SkillSection[]
-  const projects = t('projects.items', { returnObjects: true }) as Project[]
+  ]
 
   return (
-    <>
-      {/* pre neskorsie pouzitie */}
-      {/* <div className="fixed w-full h-full z-1">
-          <LaserFlow
-            color="#528bff"
-            wispDensity={1}
-            flowSpeed={0.35}
-            verticalSizing={2}
-            horizontalSizing={0.5}
-            fogIntensity={0.45}
-            fogScale={0.3}
-            wispSpeed={15}
-            wispIntensity={5}
-            flowStrength={0.25}
-            decay={1.1}
-            horizontalBeamOffset={0}
-            verticalBeamOffset={-0.5}
-          />
-        </div> */}
+    <BubbleMenu
+      items={items}
+      menuAriaLabel="Toggle navigation"
+      menuBg="#ffffff"
+      menuContentColor="#111111"
+      useFixedPosition={true}
+      animationEase="back.out(1.5)"
+      animationDuration={0.5}
+      staggerDelay={0.12}
+    />
+  )
+}
 
-      <BubbleMenu
-        items={items}
-        menuAriaLabel="Toggle navigation"
-        menuBg="#ffffff"
-        menuContentColor="#111111"
-        useFixedPosition={true}
-        animationEase="back.out(1.5)"
-        animationDuration={0.5}
-        staggerDelay={0.12}
-      />
-
-      <div className="min-h-screen bg-white relative">
-        {/* Hero Section */}
-        <section className="relative md:min-h-screen h-[60vh] flex items-center justify-center overflow-hidden bg-slate-200 z-20">
-          {/* Header Navigation */}
-          <div className="absolute top-0 left-0 right-0 z-20 px-4 md:px-8 py-6 flex justify-between items-center">
-            <span className="text-md text-slate-600">{t('header.copyright')}</span>
-            <nav className="flex gap-8 items-center">
-              <a
-                href="#about"
-                onClick={(e) => scrollToSection(e, '#about')}
-                className="md:block hidden text-md text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
-              >
-                {t('menu.about')}
-              </a>
-              <a
-                href="#skills"
-                onClick={(e) => scrollToSection(e, '#skills')}
-                className="md:block hidden text-md text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
-              >
-                {t('menu.skills')}
-              </a>
-              <a
-                href="#projects"
-                onClick={(e) => scrollToSection(e, '#projects')}
-                className="md:block hidden text-md text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
-              >
-                {t('menu.projects')}
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => scrollToSection(e, '#contact')}
-                className="md:block hidden text-md text-slate-600 hover:text-blue-500 transition-colors cursor-pointer"
-              >
-                {t('menu.contact')}
-              </a>
-              <div className="flex gap-2 md:pl-4">
-                <button
-                  onClick={() => i18n.changeLanguage('en')}
-                  className={`px-3 py-1 text-xs rounded transition-colors ${i18n.language === 'en'
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
-                    }`}
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => i18n.changeLanguage('sk')}
-                  className={`px-3 py-1 text-xs rounded transition-colors ${i18n.language === 'sk'
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
-                    }`}
-                >
-                  SK
-                </button>
-              </div>
-            </nav>
-          </div>
-
-          {/* Location Badge */}
-          <div className="absolute md:top-32 top-20 left-0 z-20 flex items-center gap-3 bg-slate-900 text-white md:px-6 px-3 md:py-3 py-2 rounded-r-full">
-            <div className="flex flex-col md:text-sm text-xs">
-              <span>{t('hero.location')}</span>
-            </div>
-            <div className="md:w-12 w-9 md:h-12 h-9 rounded-full bg-slate-700 flex items-center justify-center">
-              <Globe className="md:w-6 w-5 md:h-6 h-5" />
-            </div>
-          </div>
-
-          {/* Portrait Image */}
-          <div
-            className="absolute inset-0 w-full h-full"
-            style={{
-              transform: `translateY(${scrollY * 0.5}px)`,
-              willChange: 'transform'
-            }}
-          >
-            <motion.img
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              // src="/5B17A9CA-77D4-40BC-BC37-8C28A59A1684_1_201_a.jpeg"
-              src="/roma_landscape.jpeg"
-              alt="Portrait"
-              className="w-full h-full object-cover object-center"
-            />
-            {/* Gradient overlay - visible only on mobile */}
-            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent md:hidden pointer-events-none" />
-          </div>
-
-          {/* Role Badge */}
-          <div className="absolute md:top-1/6 top-1/2 md:right-12 right-6 z-20 text-right">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <ArrowDown className="w-6 text-blue-500 ml-auto mb-4" />
-              <div className="text-3xl md:text-4xl font-light md:text-slate-600 text-white md:drop-shadow-none drop-shadow-[0_2px_10px_rgba(0,0,0,1)]">
-                <div>{t('hero.role')}</div>
-                <div className="md:text-blue-500 text-white">{t('hero.title')}</div>
-                <div className="md:text-blue-500 text-white">{t('hero.subTitle')}</div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Marquee Name */}
-          <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden bg-transparent pointer-events-none">
-            <Marquee
-              autoFill={true}
-              pauseOnHover={true}
-              speed={100}
-            >
-              <h1 className="text-[5rem] md:text-[10rem] xl:text-[15rem] text-white px-8">
-                Andrej J. Folta -
-              </h1>
-            </Marquee>
-          </div>
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="py-16 md:py-32 px-8 bg-white relative">
-          <div className="max-w-7xl mx-auto space-y-32">
-            {/* Main Intro */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-12"
-            >
-              <h2 className="text-5xl md:text-7xl font-light tracking-tight text-blue-600">
-                {t('about.heading')}</h2>
-
-              <div className="flex items-start gap-8 max-w-3xl">
-                <div className="hidden md:block text-4xl font-light text-blue-600">→</div>
-                <div className="space-y-6">
-                  <p className="text-lg font-normal text-slate-700 leading-relaxed">
-                    {t('about.intro')}
-                  </p>
-                  <p className="text-base font-light text-slate-600 leading-relaxed">
-                    {t('about.description')}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* What I Offer */}
-            <div className="space-y-10 md:space-y-10 md:space-y-20">
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-5xl md:text-6xl font-light tracking-tight text-slate-900"
-              >
-                {t('about.whatIOffer')}
-              </motion.h3>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-                {services.map((service, index) => (
-                  <motion.div
-                    key={service.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
-                    className="space-y-8 border-t border-slate-200 pt-8"
-                  >
-                    <div className="text-slate-400 text-sm font-light">{String(index + 1).padStart(2, '0')}</div>
-                    <h4 className="text-3xl md:text-4xl font-normal text-slate-900">{service.title}</h4>
-                    <p className="text-base font-light text-slate-600 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Results */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-12"
-            >
-              <h3 className="text-3xl md:text-4xl font-light tracking-tight text-slate-900">{t('about.resultsHeading')}</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
-                <div className="space-y-3">
-                  <div className="text-5xl font-light text-blue-600">15+</div>
-                  <p className="text-base font-light text-slate-600">{t('about.results.projects')}</p>
-                </div>
-                <div className="space-y-3">
-                  <div className="text-5xl font-light text-blue-600">4</div>
-                  <p className="text-base font-light text-slate-600">{t('about.results.experience')}</p>
-                </div>
-              </div>
-              <div className="pt-4 max-w-3xl">
-                <p className="text-base font-light text-slate-600 leading-relaxed">
-                  {t('about.resultsDescription')}
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Aktuálne */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="max-w-3xl border-l-2 border-blue-600 pl-8"
-            >
-              <p className="text-lg font-light text-slate-600 leading-relaxed">
-                <strong className="font-normal text-blue-600">{t('about.currentlyHeading')}</strong> {t('about.currentlyDescription')}
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Tech Stack Section */}
-        <section id="skills" className="py-16 md:py-32 px-8 bg-slate-900 relative">
-          <div className="max-w-7xl mx-auto relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-10 md:space-y-20"
-            >
-              <h2 className="text-5xl md:text-6xl font-light tracking-tight text-white">
-                {t('skills.heading')}
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16">
-                {skillSections.map((section) => (
-                  <div key={section.title} className="space-y-6">
-                    <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider">{section.title}</h3>
-                    <div className="space-y-3">
-                      {section.items.map((skill, index) => (
-                        <motion.div
-                          key={skill}
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                          className="text-lg font-light text-slate-300"
-                        >
-                          {skill}
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Projects Section - Featured work */}
-        <section id="projects" className="py-16 md:py-32 px-8 bg-white relative">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-10 md:space-y-20"
-            >
-              <h2 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900">
-                {t('projects.heading')}
-              </h2>
-
-              <div className="space-y-24">
-                {projects.map((project, index) => (
-                  <motion.div
-                    key={project.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-slate-200 pt-8"
-                  >
-                    <div className="md:col-span-1">
-                      <h3 className="text-sm font-light text-slate-400 uppercase tracking-wider mb-2">{String(index + 1).padStart(2, '0')}</h3>
-                      <h4 className="text-2xl md:text-3xl font-normal text-slate-900">
-                        {project.title}
-                      </h4>
-                    </div>
-                    <div className="md:col-span-2 space-y-4">
-                      <p className="text-base font-light text-slate-600 leading-relaxed">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-3 pt-2">
-                        {project.tags.map((tag, tagIndex) => (
-                          <div key={tag} className="flex items-center gap-3">
-                            {tagIndex > 0 && <span className="text-slate-300">•</span>}
-                            <span className="text-sm font-light text-slate-500">{tag}</span>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="flex flex-wrap gap-3 pt-4">
-                        {project.githubUrl ? (
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded border border-slate-300 px-4 py-2 text-sm font-light text-slate-700 transition-colors hover:border-slate-900 hover:text-slate-900"
-                          >
-                            <Github className="h-4 w-4" />
-                            <span>GitHub</span>
-                          </a>
-                        ) : (
-                          <button
-                            type="button"
-                            disabled
-                            className="inline-flex cursor-not-allowed items-center gap-2 rounded border border-slate-200 px-4 py-2 text-sm font-light text-slate-400"
-                          >
-                            <Github className="h-4 w-4" />
-                            <span>GitHub</span>
-                          </button>
-                        )}
-
-                        {project.liveUrl ? (
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded bg-slate-900 px-4 py-2 text-sm font-light text-white transition-colors hover:bg-blue-600"
-                          >
-                            <ExternalLink className="h-4 w-4" />
-                            <span>Live preview</span>
-                          </a>
-                        ) : (
-                          <button
-                            type="button"
-                            disabled
-                            className="inline-flex cursor-not-allowed items-center gap-2 rounded bg-slate-100 px-4 py-2 text-sm font-light text-slate-400"
-                          >
-                            <ExternalLink className="h-4 w-4" />
-                            <span>Live preview</span>
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" className="py-16 md:py-32 px-8 bg-slate-900 relative">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-10 md:space-y-20"
-            >
-              <h2 className="text-5xl md:text-6xl font-light tracking-tight text-white">
-                {t('contact.heading')}
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                <div className="space-y-8">
-                  <p className="text-lg font-light text-slate-300 leading-relaxed">
-                    {t('contact.description')}
-                  </p>
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider mb-2">{t('contact.email')}</h3>
-                      <a
-                        href="mailto:ondrej4a@gmail.com"
-                        className="text-lg font-light text-white hover:text-blue-400 transition-colors"
-                      >
-                        ondrej4a@gmail.com
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-8">
-                  <h3 className="text-sm font-light text-slate-500 uppercase tracking-wider">{t('contact.socials')}</h3>
-                  <div className="space-y-4">
-                    <motion.a
-                      href="https://github.com/folty7"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 text-lg font-light text-white hover:text-blue-400 transition-colors group"
-                      whileHover={{ x: 5 }}
-                    >
-                      <svg className="w-5 h-5 group-hover:text-blue-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-                      </svg>
-                      <span>GitHub</span>
-                    </motion.a>
-                    <motion.a
-                      href="https://www.linkedin.com/in/andrej-jozef-fo%C4%BEta-981a3b341/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 text-lg font-light text-white hover:text-blue-400 transition-colors group"
-                      whileHover={{ x: 5 }}
-                    >
-                      <svg className="w-5 h-5 group-hover:text-blue-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                      </svg>
-                      <span>LinkedIn</span>
-                    </motion.a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="py-8 text-center text-slate-400 bg-slate-900 relative">
-          <p className="relative z-10">{t('footer.copyright')}</p>
-        </footer>
-      </div>
-    </>
+function App() {
+  return (
+    <LenisProvider>
+      <GlobalMenu />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </LenisProvider>
   )
 }
 
