@@ -4,6 +4,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --font-geist: "Geist", Arial, Helvetica, sans-serif;
+  --font-geist-mono: "Geist Mono", ui-monospace, monospace;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
