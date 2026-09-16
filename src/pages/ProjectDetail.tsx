@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion'
-import { ArrowDown, ArrowLeft, ArrowUpRight, ExternalLink, Github } from 'lucide-react'
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, Github } from 'lucide-react'
+import { Fragment } from 'react'
 import Marquee from 'react-fast-marquee'
 import { useTranslation } from 'react-i18next'
 import { Link, useParams } from 'react-router-dom'
 import { useLenis } from '../context/LenisContext'
+import { caseStudies } from '../data/caseStudies'
 
 type Project = {
   slug: string
@@ -14,22 +16,17 @@ type Project = {
   liveUrl: string | null
 }
 
-const PLACEHOLDER_VIEWS = [
-  { aspect: 'aspect-[16/10]', label: 'Hero · Above the fold' },
-  { aspect: 'aspect-[4/5]',   label: 'Section · Mobile view' },
-  { aspect: 'aspect-[4/5]',   label: 'Section · Interaction' },
-  { aspect: 'aspect-[16/10]', label: 'Gallery · Animated module' }
-]
-
 function ProjectDetail() {
   const { t, i18n } = useTranslation()
   const { slug } = useParams<{ slug: string }>()
   const { lenis, scrollY } = useLenis()
 
   const projects = t('projects.items', { returnObjects: true }) as Project[]
-  const project = projects.find((p) => p.slug === slug)
   const currentIndex = projects.findIndex((p) => p.slug === slug)
-  const nextProject = currentIndex >= 0 ? projects[(currentIndex + 1) % projects.length] : null
+  const project = currentIndex >= 0 ? projects[currentIndex] : null
+  const nextProject = project ? projects[(currentIndex + 1) % projects.length] : null
+  const study = slug ? caseStudies[slug] : undefined
+  const copy = study ? (i18n.language.startsWith('sk') ? study.sk : study.en) : undefined
 
   const scrollToOverview = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -37,7 +34,7 @@ function ProjectDetail() {
     if (target && lenis) lenis.scrollTo(target, { offset: 0, duration: 2 })
   }
 
-  if (!project) {
+  if (!project || !study || !copy) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center px-8">
         <div className="max-w-xl space-y-8 text-center">
@@ -59,6 +56,7 @@ function ProjectDetail() {
     )
   }
 
+  const heroScreen = study.screens[0]
   const totalProjects = projects.length
 
   return (
@@ -105,7 +103,7 @@ function ProjectDetail() {
           </div>
         </div>
 
-        {/* Parallax visual placeholder */}
+        {/* Parallax visual */}
         <div
           className="absolute inset-0 w-full h-full"
           style={{
@@ -119,12 +117,14 @@ function ProjectDetail() {
             transition={{ duration: 1 }}
             className="w-full h-full bg-gradient-to-br from-slate-300 via-slate-200 to-slate-400 relative"
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-slate-500 text-sm font-light uppercase tracking-widest">
-                {t('projectDetail.galleryPlaceholder')}
-              </span>
-            </div>
-            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/40 to-transparent pointer-events-none" />
+            {heroScreen && (
+              <img
+                src={heroScreen.src}
+                alt={heroScreen.alt}
+                className="absolute inset-0 w-full h-full object-cover object-top opacity-35 blur-[2px]"
+              />
+            )}
+            <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
           </motion.div>
         </div>
 
@@ -158,36 +158,9 @@ function ProjectDetail() {
         </div>
       </section>
 
-      {/* Overview / Meta */}
+      {/* Overview */}
       <section id="overview" className="py-16 md:py-32 px-8 bg-white relative">
         <div className="max-w-7xl mx-auto space-y-20 md:space-y-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-slate-200 pt-12"
-          >
-            <div className="space-y-2">
-              <h3 className="text-sm font-light text-slate-400 uppercase tracking-wider">
-                {t('projectDetail.roleLabel')}
-              </h3>
-              <p className="text-lg font-normal text-slate-900">Frontend Developer</p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="text-sm font-light text-slate-400 uppercase tracking-wider">
-                {t('projectDetail.clientLabel')}
-              </h3>
-              <p className="text-lg font-normal text-slate-900">—</p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="text-sm font-light text-slate-400 uppercase tracking-wider">
-                {t('projectDetail.yearLabel')}
-              </h3>
-              <p className="text-lg font-normal text-slate-900">—</p>
-            </div>
-          </motion.div>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -200,54 +173,87 @@ function ProjectDetail() {
             </h2>
             <div className="flex items-start gap-8 max-w-3xl">
               <div className="hidden md:block text-4xl font-light text-blue-600">→</div>
-              <p className="text-lg font-normal text-slate-700 leading-relaxed">
-                {project.description}
-              </p>
+              <div className="space-y-6">
+                <p className="text-lg font-normal text-slate-700 leading-relaxed">{copy.type}</p>
+                <p className="text-base font-light text-slate-600 leading-relaxed">{project.description}</p>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-slate-200 pt-12"
+          >
+            <div className="space-y-2">
+              <h3 className="text-sm font-light text-slate-400 uppercase tracking-wider">
+                {t('projectDetail.roleLabel')}
+              </h3>
+              <p className="text-lg font-normal text-slate-900">{copy.role}</p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-sm font-light text-slate-400 uppercase tracking-wider">
+                {t('projectDetail.stackHeading')}
+              </h3>
+              <p className="text-lg font-light text-slate-700">{project.tags.join(' · ')}</p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-sm font-light text-slate-400 uppercase tracking-wider">
+                {t('projectDetail.linksLabel')}
+              </h3>
+              <div className="flex flex-col gap-2 items-start">
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-lg font-light text-slate-900 hover:text-blue-600 transition-colors"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    <span>{t('projectDetail.viewLive')}</span>
+                  </a>
+                )}
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-lg font-light text-slate-900 hover:text-blue-600 transition-colors"
+                  >
+                    <Github className="h-4 w-4" />
+                    <span>GitHub</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="space-y-12"
+          >
+            <h3 className="text-3xl md:text-4xl font-light tracking-tight text-slate-900">
+              {t('projectDetail.resultsHeading')}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {copy.stats.map((stat) => (
+                <div key={stat.label} className="space-y-3">
+                  <div className="text-5xl font-light text-blue-600">{stat.value}</div>
+                  <p className="text-base font-light text-slate-600">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Gallery / Image placeholders */}
-      <section className="py-16 md:py-32 px-8 bg-white relative">
-        <div className="max-w-7xl mx-auto space-y-12 md:space-y-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl font-light tracking-tight text-slate-900"
-          >
-            {t('projectDetail.galleryHeading')}
-          </motion.h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-            {PLACEHOLDER_VIEWS.map((view, index) => (
-              <motion.div
-                key={view.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1 + index * 0.1 }}
-                className={`${view.aspect} relative overflow-hidden rounded-sm bg-slate-100 border border-slate-200 group`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-slate-500">
-                  <span className="text-xs font-light uppercase tracking-widest">
-                    {t('projectDetail.galleryPlaceholder')}
-                  </span>
-                  <span className="text-sm font-light">{view.label}</span>
-                </div>
-                <div className="absolute top-4 left-4 text-xs font-light text-slate-400 uppercase tracking-wider">
-                  {String(index + 1).padStart(2, '0')}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* What I Built */}
+      {/* What I worked on */}
       <section className="py-16 md:py-32 px-8 bg-white relative">
         <div className="max-w-7xl mx-auto space-y-10 md:space-y-20">
           <motion.h2
@@ -257,35 +263,71 @@ function ProjectDetail() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl md:text-6xl font-light tracking-tight text-slate-900"
           >
-            {t('projectDetail.contributionsHeading')}
+            {t('projectDetail.workedOnHeading')}
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            {[0, 1, 2].map((index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+            {copy.workedOn.map((item, index) => (
               <motion.div
-                key={index}
+                key={item.lead}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
-                className="space-y-8 border-t border-slate-200 pt-8"
+                transition={{ duration: 0.5, delay: 0.1 + (index % 2) * 0.1 }}
+                className="grid grid-cols-[3rem_1fr] gap-4 border-t border-slate-200 pt-6"
               >
-                <div className="text-slate-400 text-sm font-light">{String(index + 1).padStart(2, '0')}</div>
-                <h4 className="text-3xl md:text-4xl font-normal text-slate-900">
-                  Contribution {index + 1}
-                </h4>
-                <p className="text-base font-light text-slate-600 leading-relaxed">
-                  Placeholder description for a major piece of work delivered on this project.
-                  This block mirrors the "What I offer" layout from the home page and will be replaced
-                  with project-specific copy once the design is approved.
-                </p>
+                <div className="text-slate-400 text-sm font-light pt-1">{String(index + 1).padStart(2, '0')}</div>
+                <div className="space-y-2">
+                  <h4 className="text-2xl font-normal text-slate-900">{item.lead}</h4>
+                  {item.detail && (
+                    <p className="text-base font-light text-slate-600 leading-relaxed">{item.detail}</p>
+                  )}
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Tech stack */}
+      {/* Screens */}
+      {study.screens.length > 0 && (
+        <section className="py-16 md:py-32 px-8 bg-white relative">
+          <div className="max-w-7xl mx-auto space-y-12 md:space-y-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl md:text-4xl font-light tracking-tight text-slate-900"
+            >
+              {t('projectDetail.galleryHeading')}
+            </motion.h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+              {study.screens.map((screen, index) => (
+                <motion.div
+                  key={screen.src}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.1 }}
+                  className={`relative overflow-hidden rounded-sm bg-slate-100 border border-slate-200 ${index === 0 ? 'md:col-span-2' : ''}`}
+                >
+                  <img
+                    src={screen.src}
+                    alt={screen.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="block w-full h-auto"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* The hardest problem */}
       <section className="py-16 md:py-32 px-8 bg-slate-900 relative">
         <div className="max-w-7xl mx-auto relative">
           <motion.div
@@ -293,47 +335,94 @@ function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-10 md:space-y-20"
+            className="space-y-10 md:space-y-16"
           >
             <h2 className="text-5xl md:text-6xl font-light tracking-tight text-white">
-              {t('projectDetail.stackHeading')}
+              {t('projectDetail.hardestHeading')}
             </h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-8">
-              {project.tags.map((tag, index) => (
-                <motion.div
-                  key={tag}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.2 + index * 0.06 }}
-                  className="text-lg font-light text-slate-300 border-t border-slate-700 pt-4"
+            <div className="max-w-4xl space-y-6">
+              {copy.hardest.map((line, index) => (
+                <p
+                  key={line}
+                  className={index === 0
+                    ? 'text-2xl md:text-3xl font-light text-white leading-snug'
+                    : 'text-lg font-light text-slate-300 leading-relaxed'}
                 >
-                  {tag}
-                </motion.div>
+                  {line}
+                </p>
               ))}
             </div>
+
+            {copy.flow && (
+              <div className="flex flex-wrap items-center gap-3 border-t border-slate-700 pt-10">
+                {copy.flow.map((step, index) => (
+                  <Fragment key={step}>
+                    {index > 0 && <ArrowRight className="h-4 w-4 text-blue-400 shrink-0" />}
+                    <motion.span
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                      className={`rounded-full border px-4 py-2 text-sm font-light ${index === copy.flow!.length - 1
+                        ? 'border-blue-500 bg-blue-500 text-white'
+                        : 'border-slate-700 text-slate-300'
+                        }`}
+                    >
+                      {step}
+                    </motion.span>
+                  </Fragment>
+                ))}
+              </div>
+            )}
           </motion.div>
         </div>
       </section>
 
-      {/* CTA / Live preview */}
+      {/* What I've learned */}
       <section className="py-16 md:py-32 px-8 bg-white relative">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
+        <div className="max-w-7xl mx-auto space-y-10 md:space-y-20">
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl md:text-7xl font-light tracking-tight text-blue-600"
           >
-            <h2 className="text-5xl md:text-6xl font-light tracking-tight text-blue-600">
-              {t('projectDetail.ctaHeading')}
-            </h2>
-            <div className="space-y-8 max-w-xl">
-              <p className="text-base font-light text-slate-600 leading-relaxed">
-                {t('projectDetail.ctaDescription')}
-              </p>
+            {t('projectDetail.learnedHeading')}
+          </motion.h2>
+
+          <div className="max-w-3xl space-y-8">
+            {copy.learned.map((line, index) => (
+              <motion.div
+                key={line}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+                className="border-l-2 border-blue-600 pl-8"
+              >
+                <p className="text-lg font-light text-slate-600 leading-relaxed">{line}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA / Live preview */}
+      {(project.liveUrl || project.githubUrl) && (
+        <section className="py-16 md:py-32 px-8 bg-white relative border-t border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center"
+            >
+              <h2 className="text-5xl md:text-6xl font-light tracking-tight text-slate-900">
+                {t('projectDetail.ctaHeading')}
+              </h2>
               <div className="flex flex-wrap gap-3">
                 {project.liveUrl && (
                   <a
@@ -358,10 +447,10 @@ function ProjectDetail() {
                   </a>
                 )}
               </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Next project */}
       {nextProject && (
