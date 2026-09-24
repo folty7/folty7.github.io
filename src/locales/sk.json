@@ -15,42 +15,42 @@
     "contact": "kontakt"
   },
   "hero": {
-    "location": "Pôsobím v Prahe",
-    "role": "Freelance",
+    "location": "Žijem v Prahe",
+    "role": "",
     "title": "Software Engineer",
     "subTitle": "(Front-end focus)"
   },
   "about": {
-    "heading": "Tvorím moderné webové riešenia",
-    "intro": "Som študent Aplikovanej informatiky so 4-ročnou komerčnou developerskou praxou a dnes staviam riešenia naprieč full stackom. Špecializujem sa na aplikácie v Reacte 19 postavené na Node.js API - s produkčnými nasadeniami integrujúcimi OAuth procesy, LLM API a kontajnerizované mikroservisy. Vue.js a WordPress zostávajú aktívnymi nástrojmi z rokov klientskej práce.",
-    "description": "Vyvíjam webové riešenia pre rôznorodých klientov - od startupov po etablované firmy. Moja práca kombinuje moderný dizajn s čistým kódom a dôrazom na užívateľskú skúsenosť.",
-    "whatIOffer": "Čo ponúkam",
+    "heading": "Staviam webové aplikácie v Reacte a Node.js",
+    "intro": "Študujem Aplikovanú informatiku a popri tom mám 4 roky komerčnej praxe. Najviac času trávim v Reacte a v Node.js, kde píšem frontend aj API. V Lyre mám nasadený Spotify OAuth a Google Gemini, v ďalších projektoch Prisma s PostgreSQL a Docker. Vue.js a WordPress používam z klientskej práce.",
+    "description": "Pracoval som na weboch pre univerzitu aj pre samosprávny kraj a popri tom staviam vlastné projekty. Baví ma, keď je stránka rýchla, prehľadná a dá sa v jej kóde vyznať aj o pol roka.",
+    "whatIOffer": "S čím pracujem",
     "services": [
       {
         "title": "React 19 Full-Stack vývoj",
-        "description": "End-to-end vývoj SPA s Reactom 19, TypeScriptom a Node.js/Express backendmi. OAuth integrácie, návrh REST API, stavová architektúra so Zustand/TanStack Query a nasadenia cez Vercel + Railway s Dockerom."
+        "description": "React 19 a TypeScript na frontende, Node.js s Expressom na backende. Píšem REST API, stav riešim cez Zustand alebo TanStack Query a hotové appky nasadzujem na Vercel a Railway v Dockeri."
       },
       {
         "title": "Vue.js SPA & WordPress vývoj",
-        "description": "Produkčné Vue 3 aplikácie s Composition API, TypeScriptom a Pinia - plus custom WordPress témy so SCSS build pipeline, GSAP animáciami a performance optimalizáciou pre komerčných klientov."
+        "description": "Vue 3 s Composition API, TypeScriptom a Pinia. K tomu vlastné WordPress témy v SCSS s GSAP animáciami, ktoré som robil pre komerčných klientov."
       },
       {
         "title": "API & AI integrácie",
-        "description": "Integrácia third-party API vrátane Spotify OAuth 2.0 a Google Gemini so structured schema promptingom. Skúsenosti s návrhom gateway-proxied mikroservisných architektúr v Docker Compose s JWT a OAuth autentifikačnými stratégiami."
+        "description": "Napojenie na cudzie API: Spotify cez OAuth 2.0 a Google Gemini s pevne danou schémou odpovede. Postavil som aj gateway, ktorá proxyuje mikroservisy v Docker Compose a rieši JWT aj OAuth prihlásenie."
       }
     ],
-    "resultsHeading": "Dosiahnuté výsledky",
+    "resultsHeading": "V číslach",
     "results": {
-      "projects": "úspešne dodaných projektov rôznej komplexnosti",
-      "experience": "roky reálnych skúseností s komerčnými projektami"
+      "projects": "dokončených projektov, od malých webov po full-stack aplikácie",
+      "experience": "roky práce na komerčných projektoch"
     },
-    "resultsDescription": "Zlepšenie load time implementáciou lazy loading a code splitting. Vytvorenie reusable component libraries znižujúcich development time. Moderný workflow s pomocou AI nástrojov, s dôrazom na porozumenie kódu.",
+    "resultsDescription": "Pri väčších weboch riešim rýchlosť načítania cez lazy loading a code splitting. Komponenty píšem tak, aby sa dali použiť opakovane naprieč projektom.",
     "currentlyHeading": "Aktuálne:",
     "currentlyDescription": "Som otvorený junior alebo medior frontendovým a full-stack pozíciám, kde môžem prispieť produkčnou skúsenosťou s Reactom a Node.js a zároveň ďalej rásť. Zvažujem remote, hybridné aj on-site pozície."
   },
   "education": {
     "heading": "Vzdelanie a zameranie",
-    "intro": "Formálne štúdium informatiky kombinujem s komerčnou praxou — teóriu si overujem na reálnych produkčných projektoch.",
+    "intro": "Popri škole pracujem na reálnych projektoch.",
     "statusLabel": "Stav",
     "items": [
       {
@@ -99,8 +99,8 @@
     ]
   },
   "projects": {
-    "heading": "Featured Work",
-    "viewCaseStudy": "Pozrieť case study",
+    "heading": "Vybrané projekty",
+    "viewCaseStudy": "Pozrieť detail",
     "items": [
       {
         "slug": "lyra",
@@ -164,8 +164,8 @@
     "notFoundCta": "Späť na featured work"
   },
   "contact": {
-    "heading": "Vytvorme spolu niečo nové",
-    "description": "Máte projekt alebo nápad? Rád si s vami pohovorím a pomôžem vám pretaviť vaše predstavy do reality.",
+    "heading": "Ozvite sa",
+    "description": "Hľadám junior alebo medior pozíciu na frontende alebo full-stacku. Ak máte otvorenú rolu alebo otázku k niektorému projektu, napíšte mi.",
     "email": "Email",
     "socials": "Socials"
   },
