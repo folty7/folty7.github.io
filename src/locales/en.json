@@ -15,42 +15,42 @@
     "contact": "contact"
   },
   "hero": {
-    "location": "Based in Prague",
-    "role": "",
+    "location": "Located in Prague",
+    "role": "Freelance",
     "title": "Software Engineer",
     "subTitle": ""
   },
   "about": {
-    "heading": "I build web apps with React and Node.js",
-    "intro": "I study Applied Informatics and have 4 years of commercial experience alongside it. Most of my time goes into React and Node.js, where I write both the frontend and the API. Lyra runs Spotify OAuth and Google Gemini in production; other projects use Prisma with PostgreSQL and Docker. Vue.js and WordPress come from client work.",
-    "description": "I have worked on sites for a university and for a regional government, and I build my own projects alongside that. I care about pages that load fast, read clearly, and still make sense in the code six months later.",
-    "whatIOffer": "What I work with",
+    "heading": "Crafting modern web experiences",
+    "intro": "I'm an Applied Informatics student with 4 years of commercial development experience, now building across the full stack. I specialize in React 19 applications backed by Node.js APIs — with production deployments integrating OAuth flows, LLM APIs, and containerized microservices. Vue.js and WordPress remain active tools from years of client work.",
+    "description": "I develop web solutions for diverse clients - from startups to established companies. My work combines modern design with clean code and a focus on user experience.",
+    "whatIOffer": "What I offer",
     "services": [
       {
         "title": "React 19 Full-Stack Development",
-        "description": "React 19 and TypeScript on the frontend, Node.js with Express on the backend. I write REST APIs, handle state with Zustand or TanStack Query, and deploy to Vercel and Railway with Docker."
+        "description": "End-to-end SPA development with React 19, TypeScript, and Node.js/Express backends. OAuth integrations, REST API design, Zustand/TanStack Query state architecture, and deployments across Vercel + Railway with Docker."
       },
       {
         "title": "Vue.js SPA & WordPress Development",
-        "description": "Vue 3 with the Composition API, TypeScript, and Pinia. Plus custom WordPress themes in SCSS with GSAP animations, built for commercial clients."
+        "description": "Production Vue 3 applications with Composition API, TypeScript, and Pinia — plus custom WordPress themes with SCSS build pipelines, GSAP animations, and performance optimization for commercial clients."
       },
       {
         "title": "API & AI Integrations",
-        "description": "Connecting to other people's APIs: Spotify over OAuth 2.0 and Google Gemini with a fixed response schema. I also built a gateway that proxies microservices in Docker Compose and handles JWT and OAuth logins."
+        "description": "Third-party API integration including Spotify OAuth 2.0 and Google Gemini with structured schema prompting. Experience designing gateway-proxied microservice architectures in Docker Compose with JWT and OAuth authentication strategies."
       }
     ],
-    "resultsHeading": "In numbers",
+    "resultsHeading": "Achievements",
     "results": {
-      "projects": "finished projects, from small sites to full-stack apps",
-      "experience": "years working on commercial projects"
+      "projects": "successfully delivered projects of varying complexity",
+      "experience": "years of real-world experience with commercial projects"
     },
-    "resultsDescription": "On larger sites I handle load time with lazy loading and code splitting. I write components so they can be reused across the project.",
+    "resultsDescription": "Improved load times by implementing lazy loading and code splitting. Created reusable component libraries reducing development time. Modern workflow with AI tools, with emphasis on code understanding.",
     "currentlyHeading": "Currently:",
     "currentlyDescription": "I'm open to junior or medior frontend and full-stack roles where I can contribute with production-level React and Node.js experience while continuing to grow. Remote, hybrid, and on-site positions considered."
   },
   "education": {
     "heading": "Education & focus",
-    "intro": "I work on real projects alongside my studies.",
+    "intro": "I combine formal computer science studies with commercial practice — testing the theory on real production projects.",
     "statusLabel": "Status",
     "items": [
       {
@@ -99,8 +99,8 @@
     ]
   },
   "projects": {
-    "heading": "Selected work",
-    "viewCaseStudy": "View details",
+    "heading": "Featured Work",
+    "viewCaseStudy": "View case study",
     "items": [
       {
         "slug": "lyra",
@@ -164,8 +164,8 @@
     "notFoundCta": "Return to featured work"
   },
   "contact": {
-    "heading": "Get in touch",
-    "description": "I'm looking for a junior or medior frontend or full-stack role. If you have an open position, or a question about one of the projects, drop me a line.",
+    "heading": "Let's work together",
+    "description": "Do you have a project or idea? I'd love to talk with you and help turn your vision into reality.",
     "email": "Email",
     "socials": "Socials"
   },

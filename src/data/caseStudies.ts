@@ -64,9 +64,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       ],
       flow: ['Spotify login', 'Load library', 'Gemini groups tracks', 'Review & edit', 'Push to Spotify'],
       learned: [
-        'With an LLM it pays to define the response schema before building any UI on top of it.',
-        'People would rather adjust a suggestion than accept it blindly, so nothing is written to Spotify without confirmation.',
-        'A separate frontend and API mean two deployments and two configs to keep in sync.'
+        'Treat LLM output like an API contract. Define the schema first.',
+        'People trust AI suggestions more when they can change them before anything is saved.',
+        'Deploying the frontend and API separately forces clean boundaries between them.'
       ]
     },
     sk: {
@@ -91,9 +91,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       ],
       flow: ['Spotify login', 'Načítanie knižnice', 'Gemini zoskupí skladby', 'Kontrola a úprava', 'Odoslanie do Spotify'],
       learned: [
-        'Pri LLM sa oplatí najprv definovať schému odpovede a až potom nad ňou stavať UI.',
-        'Ľudia si návrh radšej upravia, než ho prijmú naslepo, preto sa do Spotify nič nezapíše bez potvrdenia.',
-        'Oddelený frontend a API znamenajú dve nasadenia a dve konfigurácie, ktoré treba držať v súlade.'
+        'Výstup z LLM treba brať ako API kontrakt. Najprv schéma.',
+        'Ľudia viac dôverujú AI návrhom, keď ich môžu pred uložením upraviť.',
+        'Samostatné nasadenie frontendu a API vynúti čisté hranice medzi nimi.'
       ]
     }
   },
@@ -123,9 +123,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       ],
       flow: ['Admin edit', 'REST API', 'Prisma', 'PostgreSQL', 'Query cache'],
       learned: [
-        'A change to the data model reaches the API and the admin as well, so the schema is worth thinking through up front.',
-        'With caching, the question to answer is what the user should see right after saving.',
-        'The monorepo earns its keep mainly through types shared between the frontend and the API.'
+        'A clear schema saves more time than any amount of UI polish.',
+        'Cache invalidation is a product decision: what should the user see right after saving?',
+        'A monorepo pays off as soon as frontend and backend share types.'
       ]
     },
     sk: {
@@ -151,9 +151,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       ],
       flow: ['Úprava v admine', 'REST API', 'Prisma', 'PostgreSQL', 'Query cache'],
       learned: [
-        'Zmena dátového modelu sa premietne do API aj do administrácie, takže schému si premyslím dopredu.',
-        'Pri cache je hlavná otázka, čo má používateľ vidieť hneď po uložení.',
-        'Monorepo sa vyplatí najmä kvôli typom zdieľaným medzi frontendom a API.'
+        'Jasná schéma ušetrí viac času než akékoľvek ladenie UI.',
+        'Invalidácia cache je produktové rozhodnutie: čo má používateľ vidieť hneď po uložení?',
+        'Monorepo sa oplatí hneď, ako frontend a backend zdieľajú typy.'
       ]
     }
   },
@@ -182,9 +182,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       ],
       flow: ['Client', 'Gateway: auth + masking', 'Feathers services', 'MongoDB'],
       learned: [
-        'Rules that have to hold everywhere are easier to keep in the gateway than in every service.',
-        'Microservices add operational overhead; locally, Docker Compose keeps it manageable.',
-        'Schemas help when several services talk to each other.'
+        'A gateway is the right place for rules that must never be forgotten.',
+        'Microservices trade code complexity for operational complexity. Compose makes it manageable locally.',
+        'Schemas keep services honest with each other.'
       ]
     },
     sk: {
@@ -209,9 +209,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       ],
       flow: ['Klient', 'Gateway: auth + maskovanie', 'Feathers služby', 'MongoDB'],
       learned: [
-        'Pravidlá, ktoré musia platiť všade, sa lepšie držia v gateway než v každej službe zvlášť.',
-        'Mikroslužby pridávajú prevádzkovú réžiu, lokálne ju drží pohromade Docker Compose.',
-        'Schémy pomáhajú, keď spolu komunikuje viac služieb.'
+        'Gateway je správne miesto pre pravidlá, na ktoré sa nesmie zabudnúť.',
+        'Mikroslužby menia zložitosť kódu na prevádzkovú zložitosť. Compose ju lokálne skrotí.',
+        'Schémy udržujú služby voči sebe navzájom poctivé.'
       ]
     }
   },
@@ -248,9 +248,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       ],
       flow: ['Figma', 'Shared components', 'Pinia stores', 'REST API'],
       learned: [
-        'As the lead I spent a good share of my time on agreements within the team, not only on code.',
-        'Designing in Figma first saved us rework later.',
-        'Light and dark themes are easier to handle from the start than to retrofit.'
+        'Leading the frontend is as much about agreements as it is about code.',
+        'Designing in Figma first makes implementation faster, not slower.',
+        'Theming is easier to build in from the start than to add later.'
       ]
     },
     sk: {
@@ -275,9 +275,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       ],
       flow: ['Figma', 'Zdieľané komponenty', 'Pinia stores', 'REST API'],
       learned: [
-        'Ako lead som dosť času strávil dohodami v tíme, nielen kódom.',
-        'Dizajn vo Figme pred implementáciou nám ušetril prerábanie.',
-        'Svetlú a tmavú tému je lepšie riešiť od začiatku než dorábať neskôr.'
+        'Viesť frontend znamená rovnako dohody ako kód.',
+        'Dizajn najprv vo Figme implementáciu zrýchli, nie spomalí.',
+        'Témy je jednoduchšie zabudovať od začiatku než dorábať neskôr.'
       ]
     }
   },
@@ -311,9 +311,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       ],
       flow: ['Figma', 'SCSS + JS components', 'Gulp build', 'WordPress theme', 'BrowserStack'],
       learned: [
-        'A site for a public institution has to work on older phones too.',
-        'I tuned the animations so they would not cost smoothness on mobile.',
-        'Pixel-perfect means staying in touch with the designer throughout.'
+        'A public-sector site is judged on the oldest phone in the audience, not the newest.',
+        'Animation should guide attention, not compete for it.',
+        'Pixel-perfect is a conversation with the designer, not a screenshot diff.'
       ]
     },
     sk: {
@@ -337,9 +337,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       ],
       flow: ['Figma', 'SCSS + JS komponenty', 'Gulp build', 'WordPress téma', 'BrowserStack'],
       learned: [
-        'Web pre verejnú inštitúciu musí fungovať aj na starších telefónoch.',
-        'Animácie som ladil tak, aby nešli na úkor plynulosti na mobile.',
-        'Pixel-perfect znamená priebežnú komunikáciu s dizajnérom.'
+        'Web pre verejný sektor sa posudzuje podľa najstaršieho telefónu v publiku, nie najnovšieho.',
+        'Animácia má viesť pozornosť, nie o ňu súperiť.',
+        'Pixel-perfect je rozhovor s dizajnérom, nie porovnanie screenshotov.'
       ]
     }
   }

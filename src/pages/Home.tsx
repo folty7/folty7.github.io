@@ -153,7 +153,7 @@ function Home() {
           >
             <ArrowDown className="w-6 text-blue-500 ml-auto mb-4" />
             <div className="text-3xl md:text-4xl font-light md:text-slate-600 text-white md:drop-shadow-none drop-shadow-[0_2px_10px_rgba(0,0,0,1)]">
-              {t('hero.role') && <div>{t('hero.role')}</div>}
+              <div>{t('hero.role')}</div>
               <div className="md:text-blue-500 text-white">{t('hero.title')}</div>
               <div className="md:text-blue-500 text-white">{t('hero.subTitle')}</div>
             </div>
